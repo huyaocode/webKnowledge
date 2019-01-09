@@ -693,7 +693,7 @@ p:first-child {color: red}
 
 反之
 
-- tranform 改变 fixed 子元素的定位对象
+- transform 改变 fixed 子元素的定位对象
 - transform 改变元素层叠顺序
   [transform 的副作用](http://imweb.io/topic/5a23e1f1a192c3b460fce26e)
 
