@@ -81,3 +81,22 @@ module.exports = {
   }
 }
 ```
+
+
+## header中meta
+
+兼容性配置，让IE使用最高级的Edge渲染，如果有chrome就使用chrome渲染。
+```html
+<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+```
+
+如果是双核浏览器，优先使用webkit引擎
+```html 
+<meta name="render" content="webkit">
+```
+
+DNS预解析
+DNS Prefetching 是让具有此属性的域名不需要用户点击链接就在后台解析，而域名解析和内容载入是串行的网络操作，所以这个方式能 减少用户的等待时间，提升用户体验
+```html
+<link rel="des-prefetch" href="//static.360buying.com">
+```
