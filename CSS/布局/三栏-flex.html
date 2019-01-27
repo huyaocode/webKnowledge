@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      .left,
+      .right,
+      .center {
+        min-height: 100px;
+      }
+      .wrapper {
+        display: flex;
+      }
+      .left{
+        background-color: red;
+        width: 300px;
+      }
+      .center {
+        background-color: orange;
+        flex: 1;
+      }
+      .right {
+        background-color: blue;
+        width: 300px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrapper">
+      <aside class="left"></aside>
+      <main class="center">
+        <h1>flex布局解决方案</h1>
+        <p>包裹这个3个块的父元素display: flex; 中间的元素flex: 1;</p>
+      </main>
+      <aside class="right"></aside>
+    </div>
+  </body>
+</html>

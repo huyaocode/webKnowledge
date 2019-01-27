@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>绝对定位三栏布局</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      aside {
+        position: absolute;
+        width: 300px;
+        min-height: 100px;
+      }
+      aside.left {
+        left: 0;
+        background-color: red;
+      }
+      aside.right {
+        right: 0;
+        background-color: blue;
+      }
+      main.center {
+        position: absolute;
+        left: 300px;
+        right: 300px;
+        background-color: orange;
+      }
+    </style>
+  </head>
+  <body>
+    <aside class="left"></aside>
+    <aside class="right"></aside>
+    <main class="center">
+      <h1>绝对定位解决方案</h1>
+      <p>左右区域分别postion：absolute，固定到左右两边</p>
+      <p>中间区域postion：absolute；left：300px; right: 300px</p>
+      <p>给总的宽度加一个min-width，不然缩小窗口会有毛病</p>
+    </main>
+  </body>
+</html>

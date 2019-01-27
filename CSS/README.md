@@ -1,15 +1,41 @@
 # CSS
 
-### Flex布局
-[Flex - 阮一峰 （语法篇）](http://www.ruanyifeng.com/blog/2015/07/flex-grammar.html)
-[Flex - 阮一峰 （实战篇）](http://www.ruanyifeng.com/blog/2015/07/flex-examples.html)
+### 聊一聊盒模型
+盒模型有两种， IE 怪异盒子模型、W3C标准盒子模型；
 
+盒模型是由： 内容(content)、内边距(padding)、边框(border)、外边距(margin) 组成的。
+
+标准模型的宽高是指的content区宽高；
+IE盒模型的宽高是指的content+padding+border的宽高。
+
+
+![W3C盒模型](../img/stadardBox.png)
+
+![IE盒模型](../img/strangeBox.png)
+
+
+### CSS如何设置这两种盒模型？
+
+标准盒模型：
+``` 
+box-sizing: content-box;
+```
+怪异盒模型：
+```
+box-sizing: border-box;
+```
 
 
 ### BFC 布局
 [[布局概念] 关于CSS-BFC深入理解](https://juejin.im/post/5909db2fda2f60005d2093db)
 
 BFC(Block formatting context)直译为"块级格式化上下文"。它是一个独立的渲染区域，只有Block-level box参与， 它规定了内部的Block-level Box如何布局，并且与这个区域外部毫不相干。
+
+BFC作用：
+1. BFC元素不与浮动元素相重叠（两栏布局）
+2. 清除内部浮动 （撑开高度）
+   1. 原理: 触发父div的BFC属性，使下面的子div都处在父div的同一个BFC区域之内
+3. 分属于不同的BFC时，可以阻止margin重叠
 
 如何生成BFC：（脱离文档流）
 1. 根元素，即HTML元素（最大的一个BFC）
@@ -25,11 +51,15 @@ BFC布局规则：
 4. BFC的区域不会与float box重叠。
 5. 计算BFC的高度，浮动元素也参与计算
 
-BFC作用：
-1. 自适应两栏布局
-2. 可以阻止元素被浮动元素覆盖
-3. 可以包含浮动元素---清除内部浮动 原理: 触发父div的BFC属性，使下面的子div都处在父div的同一个BFC区域之内
-4. 分属于不同的BFC时，可以阻止margin重叠
+
+### Flex布局
+[Flex - 阮一峰 （语法篇）](http://www.ruanyifeng.com/blog/2015/07/flex-grammar.html)
+[Flex - 阮一峰 （实战篇）](http://www.ruanyifeng.com/blog/2015/07/flex-examples.html)
+
+
+
+### grid网格布局
+[grid网格布局](https://www.imooc.com/article/28513)
 
 
 
@@ -113,22 +143,6 @@ BFC作用：
 - 两个外边距一正一负时，折叠结果是两者的相加的和
 
 新手在做导航栏的时候发现页面整体掉下来一截就是这个原因。
-
-
-
-### 介绍一下标准的 CSS 的盒子模型？低版本 IE 的盒子模型有什么不同的？
- 有两种， IE 盒子模型、W3C 盒子模型；
-
-盒模型： 内容(content)、填充(padding)、边界(margin)、 边框(border)；
-
-- 区 别： IE 的 content 部分把 border 和 padding 计算了进去;
-- 标准浏览器通过设置 css3 的 box-sizing: border-box 属性，触发“怪异模式”解析计算宽高
-
-标准(W3C)盒模型：元素宽度 = width + padding + border + margin
-![W3C盒模型](../img/stadardBox.png)
-
-怪异(IE)盒模型：元素宽度 = width + margin
-![IE盒模型](../img/strangeBox.png)
 
 
 
