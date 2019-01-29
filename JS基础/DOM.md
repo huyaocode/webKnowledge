@@ -40,8 +40,9 @@ DOM标准规定事件流包括三个阶段：
 
 ### Event对象常见应用
  - event.target
-   - 
+   - 触发事件的元素
  - event.currentTarget
+   - 绑定事件的元素
  - event.preventDefault()
    - 阻止默认行为
    - event.cancelBubble()和event.preventBubble 都已经废弃
@@ -49,3 +50,21 @@ DOM标准规定事件流包括三个阶段：
    - 组织事件冒泡
  - event.stopImmediatePropagation()
    - 阻止事件冒泡并且阻止相同事件的其他侦听器被调用。
+
+
+### 自定义事件
+
+ - Event
+ - CustomEvent
+
+CustomEvent不仅可以用来做自定义事件，还可以在后面跟一个object做参数
+
+```js
+var eve = new Event('myEvent');
+
+someDom.addEventListener('myEvent', function() {
+  //处理这个自定义事件
+});
+
+someDom.dispatchEvent(eve);
+```
