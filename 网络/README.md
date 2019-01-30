@@ -15,6 +15,9 @@
 ## [HTTP缓存](缓存.md)
 
 
+## [cookie和session](cookie和session.md)
+
+
 ## DNS
 DNS 的作用就是通过域名查询到具体的 IP。
 
