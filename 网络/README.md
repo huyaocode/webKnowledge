@@ -18,7 +18,11 @@
 ## [cookie和session](cookie和session.md)
 
 
-## DNS
+## [从输入URL到页面加载完成的过程](从输入URL到页面加载完成的过程.md)
+
+
+
+### DNS解析
 DNS 的作用就是通过域名查询到具体的 IP。
 
 1. 操作系统会首先在本地缓存中查询
@@ -30,10 +34,27 @@ DNS 的作用就是通过域名查询到具体的 IP。
 以上介绍的是 DNS 迭代查询，还有种是递归查询，区别就是前者是由客户端去做请求，后者是由系统配置的 DNS 服务器做请求，得到结果后将数据返回给客户端。
 
 
-## 从输入 URL 到页面加载完成的过程
+### 前后端如何通信
+ - Ajax
+ - WebSocket
+ - CORS
 
- - DNS解析
- - TCP连接
- - HTTP请求发出
- - 服务端处理请求，HTTP响应返回
- - 浏览器拿到响应数据，解析响应内内容，吧解析结果展示给用户
+
+### 如何创建Ajax
+```js
+var xhr;
+if(window.XMLHttpRequest) {
+  xhr = new XMLHttpRequest();
+} else {
+  xhr = new ActiveXObject("Microsoft.XMLHTTP");
+}
+
+xhr.onreadystatechange = function() {
+  if(xhr.readyState == 4 && xhr.status == 200) {
+    dosome(xhr.responseText);
+  }
+}
+
+xhr.open('GET', "...", "是否异步");
+xhr.send();
+```
