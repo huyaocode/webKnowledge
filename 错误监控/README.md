@@ -1,0 +1,32 @@
+### 前端错误的分类
+
+ - 资源加载错误
+ - 代码运行错误
+
+### 错误的捕获方式
+
+即时运行错误的捕获方式
+ - try - catch
+ - window.onerror
+
+资源加载错误
+ - object.onerror
+   - image标签、script标签上都可以加onerror事件
+   - 资源加载错误不会冒泡，但会捕获
+ - performance.getEntries()
+   - 获取所有已经加载资源的获取时长
+ - window对象上通过事件捕获 Error事件
+
+注： addEventLitener('事件类型', function(e){ /*回调函数*/ },捕获true或冒泡false ) 
+
+
+### 跨域的JS运行错误
+因为跨域了，只知道错误，但是无法定位错误信息
+解决方法：
+1. 客户端，在script标签上增加crossorigin属性
+2. 服务端，设置JS资源响应头 `Access-Control-Allow-Origin: *`
+
+
+### 上报错误信息
+1. 采用Ajax通信上报
+2. 利用image对象的src属性上报

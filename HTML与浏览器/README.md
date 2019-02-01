@@ -1,12 +1,35 @@
 # HTML与浏览器
 
-
 ### Doctype 作用？标准模式与兼容模式各有什么区别?
 
-<!DOCTYPE>声明位于HTML文档中的第一行，处于 html 标签之前。告知浏览器的解析器用什么文档标准解析这个文档。DOCTYPE不存在或格式不正确会导致文档以兼容模式呈现。
+DOCTYPE是用来声明文档类型和DTD规范的。
+`<!DOCTYPE html>`声明位于HTML文档中的第一行，处于 html 标签之前。告知浏览器的解析器用什么文档标准解析这个文档。DOCTYPE不存在或格式不正确会导致文档以兼容模式呈现。
 
 标准模式的排版 和 JS 运作模式都是以该浏览器支持的最高标准运行。在兼容模式中，页面以宽松的向后兼容的方式显示,模拟老式浏览器的行为以防止站点无法工作。
 
+
+
+### 浏览器渲染过程
+![xuanran.png](../img/xuanran.png)
+HTML 经过解析生成 DOM树； CSS经过解析生成　Style Rules。 二者一结合生成了Render Tree。
+通过layout计算出DOM要显示的宽高、位置、颜色。
+最后渲染在界面上，用户就看到了
+
+
+### 重排 Reflow
+定义
+DOM结构中的各元素都有自己的盒子，这些都需要浏览器根据各种样式来计算并更具结果将元素放到它该出现的位置，这个过程叫 reflow
+
+触发reflow 
+ - 添加或删除可见的DOM元素。 
+ - 元素位置改变。 
+ - 元素的尺寸改变（包括：内外边距、边框厚度、宽度、高度等属性的改变）。 
+ - 内容改变。 
+ - 页面渲染器初始化。 
+ - 浏览器窗口尺寸改变。
+
+重绘发生的情况：
+重绘发生在元素的可见的外观被改变，但并没有影响到布局的时候。比如，仅修改DOM元素的字体颜色（只有Repaint，因为不需要调整布局）
 
 
 ### canvas和svg的区别
@@ -89,52 +112,6 @@ JS 引擎则：解析和执行 javascript 来实现逻辑和控制 DOM 进行交
   - localStorage: 存储持久数据，浏览器关闭后数据不丢失除非主动删除数据；
   - sessionStorage: 数据在当前浏览器窗口关闭后自动删除。
   - cookie: 设置的 cookie 过期时间之前一直有效，即使窗口或浏览器关闭
-
-
-
-### HTML5 的 form 如何关闭自动补全功能？
-
-给不想要提示的 form 或某个 input 设置为 autocomplete=off。
-
-
-
-### 如何实现浏览器内多个标签页之间的通信? (阿里)
-
-- WebSocket、SharedWorker；
-- 也可以调用 localstorge、cookies 等本地存储方式；
-
-localstorge 另一个浏览上下文里被添加、修改或删除时，它都会触发一个`storage`事件，
-
-我们通过监听事件，控制它的值来进行页面信息通信；
-
-注意 quirks：Safari 在无痕模式下设置 localstorge 值时会抛出 QuotaExceededError 的异常；
-
-
-
-### webSocket 如何兼容低浏览器？(阿里)
-
-- Adobe Flash Socket 、
-- ActiveX HTMLFile (IE) 、
-- 基于 multipart 编码发送 XHR 、
-- 基于长轮询的 XHR
-
-
-
-### title 与 h1 的区别、b 与 strong 的区别、i 与 em 的区别？
-
-- title 属性没有明确意义只表示是个标题，H1 则表示层次明确的标题，对页面信息的抓取也有很大的影响；
-- strong 是标明重点内容，有语气加强的含义，使用阅读设备阅读网络时：strong 会重读，而 b 是展示强调内容。
-- i 内容展示为斜体，em 表示强调的文本；
-
-Physical Style Elements -- 自然样式标签
-
-b, i, u, s, pre
-
-Semantic Style Elements -- 语义样式标签
-
-strong, em, ins, del, code
-
-应该准确使用语义样式标签, 但不能滥用, 如果不能确定时首选使用自然样式标签。
 
 
 
