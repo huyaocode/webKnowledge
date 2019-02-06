@@ -79,6 +79,59 @@ JS 引擎则：解析和执行 javascript 来实现逻辑和控制 DOM 进行交
 
 
 
+### HTML5变化
+ - [新的语义化元素](http://www.w3school.com.cn/html/html5_new_elements.asp)
+   - header footer nav main article  section
+   - 删除了一些纯样式的标签
+ - [表单增强](http://caibaojian.com/html5/form.html)
+ - 新API
+   - 离线 （applicationCache ）
+   - 音视频 （audio, vidio）
+   - 图形 （canvans）
+   - 实时通信（websoket）
+   - 本地存储（localStorage, indexDB）
+   - 设备能力（地图定位，手机摇一摇）
+
+
+
+### em 与 i 的区别
+ - 效果都是斜体
+ - em 是语义化标签，表强调
+ - i 是样式标签， 表斜体
+
+
+
+### 哪些元素可以自闭合？
+ - 表单元素 input
+ - img
+ - br,  hr
+ - meta, link
+
+
+
+### HTML和DOM的关系
+ - HTML只是一个字符串
+ - DOM由HTML解析而来
+ - JS可以维护DOM
+
+
+
+### property和attribute的区别
+例如一个input标签 `<input value="3" />`
+他的attribute是3
+但如果使用`input.value = 4` 或 直接修改值为4，这时再去getAttribute得到的还是"3"
+
+
+
+### form 作用
+ - 直接提交表单
+ - 使用submit / reset按钮
+ - 便于浏览器保存表单
+ - 第三方库可以整体取值
+ - 第三方库可以进行表单验证
+
+
+
 ### 主流浏览器机器内核
 
 | 浏览器  | 内核           | 备注   |

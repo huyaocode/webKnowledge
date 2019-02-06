@@ -47,7 +47,7 @@ DOM标准规定事件流包括三个阶段：
    - 阻止默认行为
    - event.cancelBubble()和event.preventBubble 都已经废弃
  - event.stopPropagation()
-   - 组织事件冒泡
+   - 阻止事件冒泡
  - event.stopImmediatePropagation()
    - 阻止事件冒泡并且阻止相同事件的其他侦听器被调用。
 
