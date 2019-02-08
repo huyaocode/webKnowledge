@@ -1,6 +1,10 @@
 # CSS
+Cascading Style Sheet 层叠样式表
 
-### 聊一聊盒模型
+### [CSS选择器](./CSS选择器.md)
+
+
+### 盒模型
 盒模型有两种， IE 怪异盒子模型、W3C标准盒子模型；
 
 盒模型是由： 内容(content)、内边距(padding)、边框(border)、外边距(margin) 组成的。
@@ -52,6 +56,7 @@ BFC布局规则：
 5. 计算BFC的高度，浮动元素也参与计算
 
 
+
 ### Flex布局
 [Flex - 阮一峰 （语法篇）](http://www.ruanyifeng.com/blog/2015/07/flex-grammar.html)
 [Flex - 阮一峰 （实战篇）](http://www.ruanyifeng.com/blog/2015/07/flex-examples.html)
@@ -62,58 +67,110 @@ BFC布局规则：
 [grid网格布局](https://www.imooc.com/article/28513)
 
 
-
-### CSS 选择符有哪些？
- - id选择器
- - class选择器
- - 标签选择
- - 后代选择 （div a）
- - 子代选择 （div > p）
- - 相邻选择 （div + p）
- - 通配符选择 （*）
- - 属性选择器
- - 伪类选择器
+### 非布局样式
+ - 字体、字重、颜色、大小、行高
+ - 背景、边框
+ - 滚动、换行
+ - 粗体、斜体、下划线
+ - 其他
 
 
-
-### CSS3属性选择器
-| 选择器 | 描述 |
-| - | - |
-|[attribute]	|用于选取带有指定属性的元素。|
-|[attribute=value]	|用于选取带有指定属性和值的元素。|
-|[attribute~=value]	|用于选取属性值中包含指定词汇的元素。|
-|[attribute\|=value]	|用于选取带有以指定值开头的属性值的元素，该值必须是整个单词。|
-|[attribute^=value]	|匹配属性值以指定值开头的每个元素。|
-|[attribute$=value]	|匹配属性值以指定值结尾的每个元素。|
-|[attribute*=value]	|匹配属性值中包含指定值的每个元素。|
+### 行高的构成
+ - 行高是由 line-box 组成的
+ - line-box 是由一行里的 inline-box 组成的
+ - inline-box中最高的那个，或字体最大的拿个决定行高
 
 
 
-### CSS3伪类选择器
+### 你对 line-height 是如何理解的？
 
-[伪类 | MDN](https://developer.mozilla.org/zh-CN/docs/Web/CSS/Pseudo-classes#%E6%A0%87%E5%87%86%E4%BC%AA%E7%B1%BB%E7%B4%A2%E5%BC%95)
-常用：
+- line-height 指一行字的高度，包含了字间距，实际上是下一行基线到上一行基线距离
+- 如果一个标签没有定义 height 属性，那么其最终表现的高度是由 line-height 决定的
+- 一个容器没有设置高度，那么撑开容器高度的是 line-height 而不是容器内的文字内容
+- 把 line-height 值设置为 height 一样大小的值可以实现单行文字的垂直居中
+- line-height 和 height 都能撑开一个高度，height 会触发 haslayout（一个低版本IE的东西），而 line-height 不会
 
- - :hover
- - :focus
- - :after 在元素之前添加内容,也可以用来做清除浮动。
- - :before 在元素之后添加内容
- - :enabled 选择器匹配每个已启用的元素（大多用在表单元素上）。
- - :disabled 控制表单控件的禁用状态。
- - :checked 单选框或复选框被选中
- - ::selection  用户选中的区域
- - :empty   一般用来隐藏内部什么都没有的元素
- - :not(selecter)
- - 
- - p:first-of-type 
- - p:last-of-type 
- - p:only-of-type 
- - p:nth-of-type(n)
- - p:nth-last-of-type(n)
- - 
- - :nth-child(n)
- - :nth-last-child(n)
- - p:only-child 
+
+
+### line-height 三种赋值方式有何区别？（带单位、纯数字、百分比）
+
+- 带单位：px 是固定值，而 em 会参考父元素 font-size 值计算自身的行高
+- 纯数字：会把比例传递给后代。例如，父级行高为 1.5，子元素字体为 18px，则子元素行高为 1.5 \* 18 = 27px
+- 百分比：将计算后的值传递给后代
+
+
+
+### 图片下面有一个缝隙是因为什么
+![fenxi](../img/imgbottom.png)
+
+因为 img 也相当于一个 inline 的元素， inline 就要遵守行高的构成，它会按照base基线对齐，基线对齐的话那么它就会和底线间有一个缝隙。
+
+如何解决： 因为它会遵守文字对齐方案，那么就把图片的对齐方式修改为 `vertical-align: bottom`。或者让他`display: block`，这样图片虽然会换行，但是没有间隙了。
+
+
+
+### 边框
+ - 边框的属性： 线型、大小、颜色
+ - 边框背景图
+ - 边框衔接
+
+
+
+### 滚动
+ - visible 滚动条隐藏, 文字超出显示
+ - hidden  滚动条隐藏, 文字超出不显示
+ - scroll  滚动条一直显示，无论文字是否够多
+ - auto    滚动条自动隐藏
+
+
+
+### 文字折行
+ - overflow-wrap(word-wrap)通用换行控制
+   - 是否保留单词
+ - word-break 针对多字节文本文字
+   - 中文句子也是单词
+ - white-space 空白处是否换行
+
+
+
+### 装饰属性及其他
+ - 字重（粗体） font-weight
+ - 斜体  font-style: itatic
+ - 下划线   text-decoration
+ - 指针  cursor
+
+
+
+### CSS Hack
+在一部分不合法，但是在某些浏览器上生效的写法就叫CSS Hack，一般用来兼容老的浏览器， 缺点是难理解、难维护、易失效
+
+替代方案： 
+ - 特征检测
+ - 针对性的加class
+   - 比如第一步检测是IE6，那么只需要添加一个专门的 class 名来兼容IE6就好
+
+写Hack时需要注意
+ - 标准属性写在前面， hack代码写在后面
+
+
+
+### 单行文本溢出显示省略号
+```css
+overflow: hidden;
+text-overflow: ellipsis;
+white-space: no-wrap;
+```
+
+
+
+### 多行文本溢出显示省略号
+```css
+overflow: hidden;
+text-overflow: ellipsis;
+display: -webkit-box;
+-webkit-line-clamp: 3;
+-webkit-box-orient: vertical;
+```
 
 
 
@@ -166,24 +223,6 @@ BFC布局规则：
    4. vmax：基于vw和vh中的最大值来计算，1vmax 等于最大值的百分之一
 
 
-### 单行文本溢出显示省略号
-```css
-overflow: hidden;
-text-overflow: ellipsis;
-white-space: no-wrap;
-```
-
-
-### 多行文本溢出显示省略号
-```css
-overflow: hidden;
-text-overflow: ellipsis;
-display: -webkit-box;
--webkit-line-clamp: 3;
--webkit-box-orient: vertical;
-```
-
-
 
 ### CSS 优化、提高性能的方法有哪些？
 - 多个 css 合并，尽量减少 HTTP 请求
@@ -226,70 +265,6 @@ display: -webkit-box;
 - visibility
 - cursor
 
-
-
-### 如何竖直居中一个元素
-参考代码: [CSS/居中元素/垂直居中](https://github.com/huyaocode/webKnowledge/tree/master/CSS/%E5%B1%85%E4%B8%AD%E5%85%83%E7%B4%A0/%E5%9E%82%E7%9B%B4%E5%B1%85%E4%B8%AD)
-#### 被居中元素宽高固定
-
-1. 绝对定位，top和left 为 50%， margin的left和top为自身宽高一半
-```css
-.center {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  margin-left: -9rem;
-  margin-top: -5rem;
-}
-```
-
-2. 绝对定位，top和lefe为父元素一半剪自身一半
-```css
-.center {
-  position: absolute;
-  top: calc(50% - 5em);
-  left: calc(50% - 9em);
-}
-```
-
-#### 被居中元素宽高不定
-3. 使用CSS3 的 `transform`将位置在中心点平移自身宽高一半
-```css
-.center {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-```
-
-4. 使用flex布局居中
-```css
-.wrapper {
-  display: flex;
-}
-.center {
-  margin: auto;
-}
-```
-
-5. flex布局，父元素指定子元素居中。
-```css
-.wrapper {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-```
-
-#### 在浏览器窗口中居中
-基于视口的垂直居中。不要求原生有固定的宽高，但是这种居中是在整个页面窗口内居中，不是基于父元素
-```css
-.center{
-  margin: 50vh auto;
-  transform: translateY(-50%);
-}
-```
 
 
 ### display 有哪些值？说明他们的作用
@@ -363,51 +338,6 @@ display: -webkit-box;
 ```
 
 
-### 圣杯布局
-要求：三列布局；中间宽度自适应，两边内容定宽。
-
-好处：重要的内容放在文档流前面可以优先渲染
-
-原理：利用相对定位、浮动、负边距布局，而不添加额外标签
-
-实现方式：
-
-main部分首先要放在container的最前部分。然后是left,right
-
-1.将三者都 float:left , 再加上一个position:relative (因为相对定位后面会用到）
-
-2.main部分 width:100%占满
-
-3.此时main占满了，所以要把left拉到最左边，使用margin-left:-100%
-
-4.这时left拉回来了，但会覆盖main内容的左端，要把main内容拉出来，所以在外围container加上 padding:0 220px 0 200px
-
-5.main内容拉回来了，但left也跟着过来了，所以要还原，就对left使用相对定位 left:-200px  同理，right也要相对定位还原 right:-220px
-
-6.到这里大概就自适应好了。如果想container高度保持一致可以给left main right都加上min-height:130px
-
-
-
-### 双飞翼布局
-原理：主体元素上设置左右边距，预留两翼位置。左右两栏使用浮动和负边距归位。
-
-左翅left有200px,右翅right..220px.. 身体main自适应未知
-
-1.html代码中，main要放最前边，left  right
-
-2.将main  left  right 都float:left
-
-3.将main占满 width:100%
-
-4.此时main占满了，所以要把left拉到最左边，使用margin-left:-100%  同理 right使用margin-left:-220px
-
-（这时可以直接继续上边圣杯布局的步骤，也可以有所改动）
-
-5.main内容被覆盖了吧，除了使用外围的padding，还可以考虑使用margin。
-
-给main增加一个内层div-- main-inner, 然后margin:0 220px 0 200px
-
-
 
 ### li 与 li 之间有看不见的空白间隔是什么原因引起的？有什么解决办法？(也称幽灵字符)
 
@@ -430,21 +360,6 @@ main部分首先要放在container的最前部分。然后是left,right
 - 响应式设计就是网站能够兼容多个不同大小的终端，而不是为每个终端做一个特定的版本
 - 基本原理是利用 CSS3 媒体查询，为不同尺寸的设备适配不同样式
 - 对于低版本的 IE，可采用 JS 获取屏幕宽度，然后通过监听window.onresize 方法来实现兼容
-
-
-
-### css 定义的权重
- - !important 优先级最高，但也会被权重高的important所覆盖
- - 行内样式总会覆盖外部样式表的任何样式(除了!important)
- - 单独使用一个选择器的时候，不能跨等级使css规则生效
- - 如果两个权重不同的选择器作用在同一元素上，权重值高的css规则生效
- - 如果两个相同权重的选择器作用在同一元素上：以后面出现的选择器为最后规则.
- - 权重相同时，与元素距离近的选择器生
-
-
-一句话总结：
-!important > 行内样式 > ID选择器 > (类选择器 | 属性选择器 | 伪类选择器 )> 元素选择器
-![大鱼吃小鱼](http://image.zhangxinxu.com/image/blog/201208/specifishity1-1.png)
 
 
 
@@ -518,93 +433,10 @@ content 属性专门应用在 before/after 伪元素上，用于插入额外内�
 
 
 
-### 为什么要初始化 CSS 样式？
-
-- 不同浏览器对有些标签样式的默认值解析不同
-- 不初始化 CSS 会造成各现浏览器之间的页面显示差异
-- 可以使用 reset.css 或 Normalize.css 做 CSS 初始化
-
-
-
-### Normalize.css 理解
-Normalize.css 是一种现代的，为 HTML5 准备的优质替代方案。
-创造 normalize.css 有下几个目的：
-
-- 保护有用的浏览器默认样式而不是完全去掉它们
-- 一般化的样式：为大部分 HTML 元素提供
-- 修复浏览器自身的 bug 并保证各浏览器的一致性
-- 优化 CSS 可用性：用一些小技巧
-- 解释代码：用注释和详细的文档来
-
-参考：[谈一谈 Normalize.css](https://www.jianshu.com/p/9d7ff89757fd)
-
-
-
-
-### 什么是 FOUC(Flash of Unstyled Content)？ 如何来避免 FOUC？
-
-- 当使用 @import 导入 CSS 时，会导致某些页面在 IE 出现奇怪的现象： 没有样式的页面内容显示瞬间闪烁，这种现象称为“文档样式短暂失效”，简称为 FOUC
-- 产生原因：当样式表晚于结构性 html 加载时，加载到此样式表时，页面将停止之前的渲染。
-- 等待此样式表被下载和解析后，再重新渲染页面，期间导致短暂的花屏现象。
-- 解决方法：使用 link 标签将样式表放在文档 head
-
-
-
-### 介绍使用过的 CSS 预处理器
-CSS 预处理器基本思想：
-    为 CSS 增加了一些编程的特性（变量、逻辑判断、函数等）
-
-行 Web 页面样式设计，再编译成正常的 CSS 文件使用.
-
-[sass](https://www.sass.hk/guide/), [less](http://lesscss.cn), [stylus](http://stylus-lang.com/)
-
-
- - 变量 (定义主题色)
- - 函数  (计算值)
- - 混合器 （代码段的复用）
- - 父级选择器 
-
-
-
-### 浏览器是怎样解析 CSS 选择器的？
-
-浏览器解析 CSS 选择器的方式是从右到左
-[浏览器解析css选择器的规则](https://blog.csdn.net/qq_21397815/article/details/72874932)
-
-
-
 ### 元素竖向的百分比设定是相对于容器的高度吗？
 
 元素竖向的百分比设定是相对于容器的宽度，而不是高度
 
-
-
-### margin 和 padding 分别适合什么场景使用？
-
-- 需要在 border 外侧添加空白，且空白处不需要背景（色）时，使用 margin
-- 需要在 border 内测添加空白，且空白处需要背景（色）时，使用 padding
-
-
-
-### 抽离样式模块怎么写，说出思路？
-
-CSS 可以拆分成 2 部分：公共 CSS 和 业务 CSS：
-
-- 网站的配色，字体，交互提取出为公共 CSS。这部分 CSS 命名不应涉及具体的业务
-- 对于业务 CSS，需要有统一的命名，使用公用的前缀。可以参考面向对象的 CSS
-
-
-
-### 什么是视差滚动效果，如何给每页做不同的动画？
-
-- 视差滚动是指多层背景以不同的速度移动，形成立体的运动效果，具有非常出色的视觉体验
-- 一般把网页解剖为：背景层、内容层和悬浮层。当滚动鼠标滚轮时，各图层以不同速度移动，形成视差的
-
-实现原理
-
-- 以 “页面滚动条” 作为 “视差动画进度条”
-- 以 “滚轮刻度” 当作 “动画帧度” 去播放动画的
-- 监听 mousewheel 事件，事件被触发即播放动画，实现“翻页”效果
 
 
 
@@ -649,32 +481,6 @@ p:first-child {color: red}
 
 
 
-### 一个高度自适应的 div，里面有两个 div，一个高度 100px，希望另一个填满剩下的高度
-
-- 方案 1： .sub { height: calc(100%-100px); }
-- 方案 2： .container { position:relative; } .sub { position: absolute; top: 100px; bottom: 0; }
-- 方案 3： .container { display:flex; flex-direction:column; } .sub { flex:1; }
-
-
-
-### 你对 line-height 是如何理解的？
-
-- line-height 指一行字的高度，包含了字间距，实际上是下一行基线到上一行基线距离
-- 如果一个标签没有定义 height 属性，那么其最终表现的高度是由 line-height 决定的
-- 一个容器没有设置高度，那么撑开容器高度的是 line-height 而不是容器内的文字内容
-- 把 line-height 值设置为 height 一样大小的值可以实现单行文字的垂直居中
-- line-height 和 height 都能撑开一个高度，height 会触发 haslayout（一个低版本IE的东西），而 line-height 不会
-
-
-
-### line-height 三种赋值方式有何区别？（带单位、纯数字、百分比）
-
-- 带单位：px 是固定值，而 em 会参考父元素 font-size 值计算自身的行高
-- 纯数字：会把比例传递给后代。例如，父级行高为 1.5，子元素字体为 18px，则子元素行高为 1.5 \* 18 = 27px
-- 百分比：将计算后的值传递给后代
-
-
-
 ### 设置元素浮动后，该元素的 display 值会如何变化？
 
 设置元素浮动后，该元素的 display 值自动变成 block
@@ -688,116 +494,7 @@ p:first-child {color: red}
 
 
 
-### 如果设计中使用了非标准的字体，你该如何去实现？
-
-- 用图片代替
-- web fonts 在线字库
-- @font-face
-
-参考链接：[如果设计中使用了非标准的字体，你该如何去实现？](https://blog.csdn.net/xujie_0311/article/details/42368371)
-
-
-
-### 请问为何要使用 transform 而非 absolute positioning，或反之的理由？为什么？
-
-- 使用 transform 或 position 实现动画效果时是有很大差别。
-- 使用 transform 时，可以让 GPU 参与运算，动画的 FPS 更高。
-- 使用 position 时，最小的动画变化的单位是 1px，而使用 transform 参与时，可以做到更小（动画效果更加平滑）
-- 功能都一样。但是 translate 不会引起浏览器的重绘和重排，这就相当 nice 了。
-
-反之
-
-- transform 改变 fixed 子元素的定位对象
-- transform 改变元素层叠顺序
-  [transform 的副作用](http://imweb.io/topic/5a23e1f1a192c3b460fce26e)
-
-
-
-### 怎么让 Chrome 支持小于 12px 的文字？
-
-```css
-  .shrink{
-    -webkit-transform:scale(0.8);
-    -o-transform:scale(1);
-    display:inline-block;
-  }
-```
-
-
-
-
-
-
-
-
-### font-style 属性 oblique 是什么意思？
-
-font-style: oblique; 使没有 italic 属性的文字实现倾斜
-
-
-
-### 如果需要手动写动画，你认为最小时间间隔是多久？
-
-16.7ms
-
-
-
-### 如何修改 Chrome 记住密码后自动填充表单的黄色背景？
-
-- 产生原因：由于 Chrome 默认会给自动填充的 input 表单加上 input:-webkit-autofill 私有属性造成的
-- 解决方案 1：在 form 标签上直接关闭了表单的自动填充：autocomplete="off"
-- 解决方案 2：input:-webkit-autofill { background-color: transparent; }
-
-input [type=search] 搜索框右侧小图标如何美化？
-
-```css
-input[type="search"]::-webkit-search-cancel-button{
-  -webkit-appearance: none;
-  height: 15px;
-  width: 15px;
-  border-radius: 8px;
-  background:url("images/searchicon.png") no-repeat 0 0;
-  background-size: 15px 15px;
-}
-```
-
-
-
-### 网站图片文件，如何点击下载？而非点击预览？
-
-```html
-<a href="logo.jpg" download>下载</a> <a href="logo.jpg" download="网站LOGO" >下载</a>
-```
-
-
-
-### iOS safari 如何阻止“橡皮筋效果”？
-
-```js
-  $(document).ready(function(){
-      var stopScrolling = function(event) {
-          event.preventDefault();
-      }
-      document.addEventListener('touchstart', stopScrolling, false);
-      document.addEventListener('touchmove', stopScrolling, false);
-  });
-```
-
-
-
-### 如何优化网页的打印样式
-
-```html
-<link rel="stylesheet" type="text/css" media="screen" href="xxx.css" />
-
-其中 media 指定的属性就是设备，显示器上就是 screen，打印机则是 print，电视是 tv，投影仪是 projection。
-
-```html
- <link rel="stylesheet" type="text/css" media="print" href="yy
-```
-但打印样式表也应有些注意事项：
-
-- 打印样式表中最好不要用背景图片，因为打印机不能打印 CSS 中的背景。如要显示图片，请使用 html 插入到页面中。
-- 最好不要使用像素作为单位，因为打印样式表要打印出来的会是实物，所以建议使用 pt 和 cm。
-- 隐藏掉不必要的内容。（@print div{display:none;}）
-- 打印样式表中最好少用浮动属性，因为它们会消失。
+### base64的使用
+ - 写入CSS， 减少HTTP请求
+ - 适用于小图片
+ - base64的体积约为原图4/3

@@ -1,0 +1,173 @@
+### 一个高度自适应的 div，里面有两个 div，一个高度 100px，希望另一个填满剩下的高度
+
+- 方案 1： .sub { height: calc(100%-100px); }
+- 方案 2： .container { position:relative; } .sub { position: absolute; top: 100px; bottom: 0; }
+- 方案 3： .container { display:flex; flex-direction:column; } .sub { flex:1; }
+
+
+
+### 为什么要初始化 CSS 样式？
+
+- 不同浏览器对有些标签样式的默认值解析不同
+- 不初始化 CSS 会造成各现浏览器之间的页面显示差异
+- 可以使用 reset.css 或 Normalize.css 做 CSS 初始化
+
+
+
+### Normalize.css 理解
+Normalize.css 是一种现代的，为 HTML5 准备的优质替代方案。
+创造 normalize.css 有下几个目的：
+
+- 保护有用的浏览器默认样式而不是完全去掉它们
+- 一般化的样式：为大部分 HTML 元素提供
+- 修复浏览器自身的 bug 并保证各浏览器的一致性
+- 优化 CSS 可用性：用一些小技巧
+- 解释代码：用注释和详细的文档来
+
+参考：[谈一谈 Normalize.css](https://www.jianshu.com/p/9d7ff89757fd)
+
+
+
+
+### 什么是 FOUC(Flash of Unstyled Content)？ 如何来避免 FOUC？
+
+- 当使用 @import 导入 CSS 时，会导致某些页面在 IE 出现奇怪的现象： 没有样式的页面内容显示瞬间闪烁，这种现象称为“文档样式短暂失效”，简称为 FOUC
+- 产生原因：当样式表晚于结构性 html 加载时，加载到此样式表时，页面将停止之前的渲染。
+- 等待此样式表被下载和解析后，再重新渲染页面，期间导致短暂的花屏现象。
+- 解决方法：使用 link 标签将样式表放在文档 head
+
+
+
+### 介绍使用过的 CSS 预处理器
+CSS 预处理器基本思想：
+    为 CSS 增加了一些编程的特性（变量、逻辑判断、函数等）
+
+行 Web 页面样式设计，再编译成正常的 CSS 文件使用.
+
+[sass](https://www.sass.hk/guide/), [less](http://lesscss.cn), [stylus](http://stylus-lang.com/)
+
+
+ - 变量 (定义主题色)
+ - 函数  (计算值)
+ - 混合器 （代码段的复用）
+ - 父级选择器 
+
+
+
+
+### 抽离样式模块怎么写，说出思路？
+
+CSS 可以拆分成 2 部分：公共 CSS 和 业务 CSS：
+
+- 网站的配色，字体，交互提取出为公共 CSS。这部分 CSS 命名不应涉及具体的业务
+- 对于业务 CSS，需要有统一的命名，使用公用的前缀。可以参考面向对象的 CSS
+
+
+
+### 什么是视差滚动效果，如何给每页做不同的动画？
+
+- 视差滚动是指多层背景以不同的速度移动，形成立体的运动效果，具有非常出色的视觉体验
+- 一般把网页解剖为：背景层、内容层和悬浮层。当滚动鼠标滚轮时，各图层以不同速度移动，形成视差的
+
+实现原理
+
+- 以 “页面滚动条” 作为 “视差动画进度条”
+- 以 “滚轮刻度” 当作 “动画帧度” 去播放动画的
+- 监听 mousewheel 事件，事件被触发即播放动画，实现“翻页”效果
+
+
+
+### 如果设计中使用了非标准的字体，你该如何去实现？
+
+- 用图片代替
+- web fonts 在线字库
+- @font-face
+
+参考链接：[如果设计中使用了非标准的字体，你该如何去实现？](https://blog.csdn.net/xujie_0311/article/details/42368371)
+
+
+
+### 请问为何要使用 transform 而非 absolute positioning，或反之的理由？为什么？
+
+- 使用 transform 或 position 实现动画效果时是有很大差别。
+- 使用 transform 时，可以让 GPU 参与运算，动画的 FPS 更高。
+- 使用 position 时，最小的动画变化的单位是 1px，而使用 transform 参与时，可以做到更小（动画效果更加平滑）
+- 功能都一样。但是 translate 不会引起浏览器的重绘和重排，这就相当 nice 了。
+
+反之
+
+- transform 改变 fixed 子元素的定位对象
+- transform 改变元素层叠顺序
+  [transform 的副作用](http://imweb.io/topic/5a23e1f1a192c3b460fce26e)
+
+
+
+### 怎么让 Chrome 支持小于 12px 的文字？
+
+```css
+  .shrink{
+    -webkit-transform:scale(0.8);
+    -o-transform:scale(1);
+    display:inline-block;
+  }
+```
+
+
+
+### font-style 属性 oblique 是什么意思？
+
+font-style: oblique; 使没有 italic 属性的文字实现倾斜
+
+
+
+### 如果需要手动写动画，你认为最小时间间隔是多久？
+
+16.7ms
+
+
+
+### 如何修改 Chrome 记住密码后自动填充表单的黄色背景？
+
+- 产生原因：由于 Chrome 默认会给自动填充的 input 表单加上 input:-webkit-autofill 私有属性造成的
+- 解决方案 1：在 form 标签上直接关闭了表单的自动填充：autocomplete="off"
+- 解决方案 2：input:-webkit-autofill { background-color: transparent; }
+
+input [type=search] 搜索框右侧小图标如何美化？
+
+```css
+input[type="search"]::-webkit-search-cancel-button{
+  -webkit-appearance: none;
+  height: 15px;
+  width: 15px;
+  border-radius: 8px;
+  background:url("images/searchicon.png") no-repeat 0 0;
+  background-size: 15px 15px;
+}
+```
+
+
+
+### 网站图片文件，如何点击下载？而非点击预览？
+
+```html
+<a href="logo.jpg" download>下载</a> <a href="logo.jpg" download="网站LOGO" >下载</a>
+```
+
+
+
+### 如何优化网页的打印样式
+
+```html
+<link rel="stylesheet" type="text/css" media="screen" href="xxx.css" />
+
+其中 media 指定的属性就是设备，显示器上就是 screen，打印机则是 print，电视是 tv，投影仪是 projection。
+
+```html
+ <link rel="stylesheet" type="text/css" media="print" href="yy
+```
+但打印样式表也应有些注意事项：
+
+- 打印样式表中最好不要用背景图片，因为打印机不能打印 CSS 中的背景。如要显示图片，请使用 html 插入到页面中。
+- 最好不要使用像素作为单位，因为打印样式表要打印出来的会是实物，所以建议使用 pt 和 cm。
+- 隐藏掉不必要的内容。（@print div{display:none;}）
+- 打印样式表中最好少用浮动属性，因为它们会消失。
