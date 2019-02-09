@@ -1,5 +1,16 @@
 # 布局
 
+## Flex布局
+[Flex - 阮一峰 （语法篇）](http://www.ruanyifeng.com/blog/2015/07/flex-grammar.html)
+[Flex - 阮一峰 （实战篇）](http://www.ruanyifeng.com/blog/2015/07/flex-examples.html)
+ 
+
+
+## grid网格布局
+[grid网格布局](https://www.imooc.com/article/28513)
+
+
+
 ## 三栏布局
 假设高度已知，请写出三栏布局，其中左右栏宽300px,中间自适应
 
@@ -47,3 +58,13 @@ main部分首先要放在container的最前部分。然后是left,right
 5.main内容被覆盖了吧，除了使用外围的padding，还可以考虑使用margin。
 
 给main增加一个内层div-- main-inner, 然后margin:0 220px 0 200px
+
+
+
+### 响应式设计和布局
+在不同设备上正常使用，一般主要处理屏幕大小问题
+ - 隐藏 + 折行 + 自适应空间
+ - rem做单位
+ - viewport
+   - width=divice-width,
+ - 媒体查询
