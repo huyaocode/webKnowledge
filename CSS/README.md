@@ -265,6 +265,44 @@ display: -webkit-box;
 
 
 
+### [transform变形](https://developer.mozilla.org/en-US/docs/Web/CSS/transform)
+与transition、translate名字有点像，transition是做过渡动画的，而translate是用来做平移的。
+
+ - none	
+   - 定义不进行转换。
+ - matrix(n,n,n,n,n,n)	
+   - 定义 2D 转换，使用六个值的矩阵。
+ - translate(x,y)
+   - 从其当前位置移动，根据给定的 left（x 坐标）和 top（y 坐标）
+ - translate3d(x,y,z)
+   - 定义 3D 转换。
+ - translateX(x)
+ - translateY(y)
+ - translateZ(z)
+ - scale(x[,y]?)
+   - 定义 2D 缩放转换。
+ - scale3d(x,y,z)	
+   - 定义 3D 缩放转换。
+ - scaleX(x)	
+ - scaleY(y)	
+ - scaleZ(z)	
+ - rotate(angle)	
+   - 定义 2D 旋转，在参数中规定角度。
+ - rotate3d(x,y,z,angle)	
+   - 定义 3D 旋转。
+ - rotateX(angle)	
+ - rotateY(angle)	
+ - rotateZ(angle)	
+ - skew(x-angle,y-angle)
+   - 定义沿着 X 和 Y 轴的 2D 倾斜转换。
+ - skewX(angle)
+ - skewY(angle)
+ - perspective(n)	
+   - 为 3D 转换元素定义透视视图。
+ 
+
+
+
 ### CSS 优化、提高性能的方法有哪些？
 - 多个 css 合并，尽量减少 HTTP 请求
 - css 雪碧图
