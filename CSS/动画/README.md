@@ -6,7 +6,7 @@
  - 其他 - 线形变换
 
 
-## transition 过渡动画
+### transition 过渡动画
 用来控制过渡的时间，使用过渡的属性，过渡效果曲线，过渡的延时
 
 要求元素的状态必须有变化，即某CSS值变化时发生的动画
@@ -49,7 +49,7 @@ bezier曲线在线效果网址 [cubic-bezier.com](http://cubic-bezier.com)
 
 
 
-## animation 关键帧动画
+### animation 关键帧动画
 相当于多个补间动画组合到一起
 
 与transition不同的是，他可以让元素自己动，而不要求某值的改变来触发动画
@@ -100,3 +100,24 @@ bezier曲线在线效果网址 [cubic-bezier.com](http://cubic-bezier.com)
   }
 }
 ```
+
+
+### 逐帧动画
+关键帧之间是有补间的，会选一个效果过渡过去，而逐帧动画则是每个keyframe之间没有过渡，直接切换过去
+参考[猎豹奔跑](./animal.html)
+关键是使用下面这行CSS
+`animation-timing-function: steps(1);`
+这个step是指定关键帧之间需要有几个画面
+
+
+### 过渡动画和关键帧动画的区别
+ - 过渡动画需要有状态变化
+ - 关键帧动画不需要状态变化
+ - 关键帧动画能控制更精细
+
+
+### CSS动画的性能
+ - CSS动画不差
+ - 部分情况下优于JS
+ - JS可以做到更精细
+ - 含高危属性，会让性能变差 (如box-shadow)
