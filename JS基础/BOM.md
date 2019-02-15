@@ -14,6 +14,7 @@ BOM 是 browser object model 的缩写， 简称浏览器对象模型。 主要�
 因此， BOM 包含了 DOM， 浏览器提供出来给予访问的是 BOM 对象， 从 BOM 对象再访
 问到 DOM 对象， 从而 js 可以操作浏览器以及浏览器读取到的文档
 
+
 ### BOM 对象包含哪些内容？
 
 - Window JavaScript 层级中的顶层对象， 表示浏览器窗口。
@@ -28,7 +29,7 @@ BOM 是 browser object model 的缩写， 简称浏览器对象模型。 主要�
 History 对象包含用户（在浏览器窗口中） 访问过的 URL
 
 |  方法/属性  |  描述 |
-|  -  |  -   |
+|  -  |   - |
 | length     | 返回浏览器历史列表中的 URL 数量。|
 | back()     | 加载 history 列表中的前一个 URL。|
 | forward()  | 加载 history 列表中的下一个 URL。|
@@ -52,7 +53,7 @@ Location 对象包含有关当前 URL 的信息。
 
 
 | 方法  |  描述  |
-|   -   |   -   |
+|    - |    - |
 |assign()         | 加载新的文档。 |
 |reload(‘force’)  | 重新加载当前文档。参数可选，不填或填 false 则取浏览器缓存的文档|
 |replace()        | 用新的文档替换当前文档。|
@@ -118,7 +119,7 @@ Window 对象表示一个浏览器窗口或一个框架。 在客户端 JavaScri
 Navigator 对象包含的属性描述了正在使用的浏览器。 可以使用这些属性进行平台专用的配置。 虽然这个对象的名称显而易见的是 Netscape 的 Navigator 浏览器， 但其他实现了 JavaScript 的浏览器也支持这个对象。
 
 | 属性 | 描述 |
-| - | -     |
+| - |  -   |
 |appCodeName      | 返回浏览器的代码名。 以 Netscape 代码为基础的浏览器中， 它的值是 "Mozilla"。Microsoft 也是|
 |appMinorVersion  | 返回浏览器的次级版本。 （IE4、 Opera 支持）|
 |appName          | 返回浏览器的名称。|
@@ -133,7 +134,7 @@ Navigator 对象包含的属性描述了正在使用的浏览器。 可以使用
 |plugins          | 返回包含客户端安装的所有插件的数组|
 
 | 方法 | 描述  |
-| -   | -   |
+|  - |  - |
 |javaEnabled()    | 规定浏览器是否支持并启用了 Java。|
 |taintEnabled()   | 规定浏览器是否启用数据污点 (data tainting)。|
 
@@ -143,7 +144,7 @@ Navigator 对象包含的属性描述了正在使用的浏览器。 可以使用
 Screen 对象包含有关客户端显示屏幕的信息。 每个 Window 对象的 screen 属性都引用一个 Screen 对象。 Screen 对象中存放着有关显示浏览器屏幕的信息。 JavaScript 程序将利用这些信息来优化它们的输出， 以达到用户的显示要求。 例如，一个程序可以根据显示器的尺寸选择使用大图像还是使用小图像，它还可以根据显示器的颜色深度选择使用 16 位色还是使用 8 位色的图形。 另外，JavaScript 程序还能根有关屏幕尺寸的信息将新的浏览器窗口定位在屏幕中间。
 
 |    属性   |   描述   |
-|   -   |   -   |
+|    - |    - |
 |availHeight          |返回显示屏幕的高度 (除 Windows 任务栏之外)。|
 |availWidth           |返回显示屏幕的宽度 (除 Windows 任务栏之外)。|
 |bufferDepth          |设置或返回调色板的比特深度。 （仅 IE 支持）colorDepth 返回目标设备或缓冲器上的调色板的比特深度。|
@@ -156,3 +157,18 @@ Screen 对象包含有关客户端显示屏幕的信息。 每个 Window 对象�
 |pixelDepth           |返回显示屏幕的颜色分辨率（比特每像素） 。|
 |updateInterval       | 设置或返回屏幕的刷新率。 （仅 IE11 以下支持）|
 | width |返回显示器屏幕的宽度。|
+
+
+
+### 检测浏览器版本版本有哪些方式？
+
+ - 根据 navigator.userAgent // UA.toLowerCase().indexOf('chrome')
+ - 根据 window 对象的成员 // 'ActiveXObject' in window
+
+
+
+### offsetWidth/offsetHeight,clientWidth/clientHeight 与 scrollWidth/scrollHeight 的区别
+
+ - offsetWidth/offsetHeight 返回值包含 content + padding + border，效果与 e.getBoundingClientRect()相同
+ - clientWidth/clientHeight 返回值只包含 content + padding，如果有滚动条，也不包含滚动条
+ - scrollWidth/scrollHeight 返回值包含 content + padding + 溢出内容的尺寸
