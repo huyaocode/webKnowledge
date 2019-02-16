@@ -142,6 +142,76 @@ function stopHandler(event)
 
 
 
+### JS获取dom的CSS样式
+
+```js
+function getStyle(obj, attr){
+  if(obj.currentStyle){
+    return obj.currentStyle[attr];
+  } else {
+    return window.getComputedStyle(obj, false)[attr];
+  }
+}
+```
+
+
+### [JS实现鼠标拖拽](https://blog.csdn.net/qq_37746973/article/details/80748879)
+
+
+
+### DOM 操作——怎样添加、移除、移动、复制、创建和查找节点?
+
+创建新节点
+
+ - createDocumentFragment() //创建一个 DOM 片段
+ - createElement() //创建一个具体的元素
+ - createTextNode() //创建一个文本节点
+
+添加、移除、替换、插入
+
+ - appendChild()
+ - removeChild()
+ - replaceChild()
+ - insertBefore() //在已有的子节点前插入一个新的子节点
+
+查找
+
+ - getElementsByTagName() //通过标签名称
+ - getElementsByName() // 通过元素的 Name 属性的值(IE 容错能力较强，会得到一个数组，其中包括 id 等于 name 值的)  
+ - getElementById() //通过元素 Id，唯一性
+
+
+
+### documen.write 和 innerHTML 的区别
+
+ - document.write 只能重绘整个页面
+ - innerHTML 可以重绘页面的一部分
+
+
+### Window 对象 与 document对象
+
+window
+ - Window 对象表示当前浏览器的窗口，是 JavaScript 的顶级对象。
+ - 我们创建的所有对象、函数、变量都是 Window 对象的成员。
+ - Window 对象的方法和属性是在全局范围内有效的。
+
+document
+ - Document 对象是 HTML 文档的根节点与所有其他节点（元素节点，文本节点，属性节点, 注释节点）
+ - Document 对象使我们可以通过脚本对 HTML 页面中的所有元素进行访问
+ - Document 对象是 Window 对象的一部分，即 window.document
+
+
+
+### 区分什么是“客户区坐标”、“页面坐标”、“屏幕坐标” 
+
+ - 客户区坐标
+   - 鼠标指针在可视区中的水平坐标(clientX)和垂直坐标(clientY)
+ - 页面坐标
+   - 鼠标指针在页面布局中的水平坐标(pageX)和垂直坐标
+ - 屏幕坐标
+   - 设备物理屏幕的水平坐标(screenX)和垂直坐标(screenY)
+
+
 ### IE 的事件处理和 W3C 的事件处理有哪些区别？
 
 绑定事件
@@ -173,17 +243,3 @@ function stopHandler(event)
 
  - W3C: e.stopPropagation()
  - IE: window.event.cancelBubble = true
-
-
-
-### Window 对象 与 document对象
-
-window
- - Window 对象表示当前浏览器的窗口，是 JavaScript 的顶级对象。
- - 我们创建的所有对象、函数、变量都是 Window 对象的成员。
- - Window 对象的方法和属性是在全局范围内有效的。
-
-document
- - Document 对象是 HTML 文档的根节点与所有其他节点（元素节点，文本节点，属性节点, 注释节点）
- - Document 对象使我们可以通过脚本对 HTML 页面中的所有元素进行访问
- - Document 对象是 Window 对象的一部分，即 window.document

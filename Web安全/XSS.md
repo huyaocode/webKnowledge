@@ -147,5 +147,3 @@ function xssFilter (html) {
 ## 使用npm包来简化操作
 [xss文档](https://github.com/leizongmin/js-xss/blob/master/README.zh.md)
 
-## CSP 内容安全策略
-[CSP](https://developer.mozilla.org/zh-CN/docs/Web/HTTP/CSP) ( Content Security Policy ) 在http头中指定哪一些内容是可以执行的
