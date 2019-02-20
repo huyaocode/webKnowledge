@@ -6,24 +6,52 @@
 
 ## [React中性能优化](React中性能优化.md)
 
+### React 的工作原理
+
+React 会创建一个虚拟 DOM(virtual DOM)。当一个组件中的状态改变时，React 首先会通过 "diffing" 算法来标记虚拟 DOM 中的改变，第二步是调节(reconciliation)，会用 diff 的结果来更新 DOM。
+
+
+### 使用 React 有何优点
+ - JSX 的引入，使得组件的代码更加可读，也更容易看懂组件的布局，或者组件之间是如何互相引用的
+ - 支持服务端渲染，可改进SEO和性能
+ - 易于测试
+ - React 只关注 View 层，所以可以和其它任何框架(如Backbone.js, Angular.js)一起使用
+
+
 ### react生命周期函数
 
 一、初始化阶段：
- - getDefaultProps:获取实例的默认属性
- - getInitialState:获取每个实例的初始化状态
- - componentWillMount：组件即将被装载、渲染到页面上
- - render:组件在这里生成虚拟的DOM节点
- - componentDidMount:组件真正在被装载之后
+ - getDefaultProps
+   - 获取实例的默认属性
+ - getInitialState
+   - 获取每个实例的初始化状态
+ - componentWillMount
+   - 组件即将被装载、渲染到页面上
+   - 多用于根组件中的应用程序配置
+ - render
+   - 组件在这里生成虚拟的DOM节点
+ - componentDidMount
+   - 组件真正在被装载之后
+   - 在这可以完成所有没有 DOM 就不能做的所有配置，并开始获取所有你需要的数据（发送请求）；如果需要设置事件监听，也可以在这完成
+
 
 二、运行中状态：
- - componentWillReceiveProps:组件将要接收到属性的时候调用
- - shouldComponentUpdate:组件接受到新属性或者新状态的时候（可以返回false，接收数据后不更新，阻止render调用，后面的函数不会被继续执行了）
- - componentWillUpdate:组件即将更新不能修改属性和状态
- - render:组件重新描绘
- - componentDidUpdate:组件已经更新
+ - componentWillReceiveProps
+   - 组件将要接收到属性的时候调用
+ - shouldComponentUpdate
+   - 是一个改善性能的地方，组件接受到新属性或者新状态的时候（可以返回false，接收数据后不更新，阻止render调用，后面的函数不会被继续执行了）
+ - componentWillUpdate
+   - 组件即将更新不能修改属性和状态
+ - render
+   - 组件重新描绘
+ - componentDidUpdate
+   - 组件已经更新
+   - 响应 prop 或 state 的改变
 
 三、销毁阶段：
- - componentWillUnmount:组件即将销毁
+ - componentWillUnmount
+   - 组件即将销毁
+   - 在这你可以取消网络请求，或者移除所有与组件相关的事件监听器
 
 
 ### 当你调用setState的时候，发生了什么事？
@@ -40,9 +68,10 @@
 
 
 ### 为什么建议传递给 setState 的参数是一个 callback 而不是一个对象
+
 setState它是一个异步函数，他会合并多次修改，降低diff算法的比对频率。这样也会提升性能。
 
-因为 this.props 和 this.state 的更新可能是异步的，不能依赖它们的值去计算下一个 state。
+因为 this.props 和 this.state 的**更新是异步的**，**不能依赖它们的值**去计算下一个 state。
 
 
 
@@ -115,7 +144,8 @@ Refs 是 React 提供给我们的安全访问 DOM 元素或者某个组件实例
 
 ### (在构造函数中)调用 super(props) 的目的是什么
 
-在 super() 被调用之前，子类是不能使用 this 的，在 ES2015 中，子类必须在 constructor 中调用 super()。传递 props 给 super() 的原因则是便于(在子类中)能在 constructor 访问 this.props。
+**在 super() 被调用之前，子类是不能使用 this 的，在 ES2015 中，子类必须在 constructor 中调用 super()。** 
+传递 props 给 super() 的原因则是让子类中能用 constructor 访问 this.props。
 
 
 
@@ -130,8 +160,16 @@ Refs 是 React 提供给我们的安全访问 DOM 元素或者某个组件实例
 
 ### 类组件(Class component)和函数式组件(Functional component)之间有何不同
 
-- 类组件不仅允许你使用更多额外的功能，如组件自身的状态和生命周期钩子，也能使组件直接访问 store 并维持状态
-- 当组件仅是接收 props，并将组件自身渲染到页面时，该组件就是一个 '无状态组件(stateless component)'，可以使用一个纯函数来创建这样的组件。这种组件也被称为哑组件(dumb components)或展示组件
+ - 类组件不仅允许你使用更多额外的功能，如组件自身的状态和生命周期钩子，也能使组件直接访问 store 并维持状态
+ - 当组件仅是接收 props，并将组件自身渲染到页面时，该组件就是一个 '无状态组件(stateless component)'，可以使用一个纯函数来创建这样的组件。这种组件也被称为哑组件(dumb components)或展示组件
+
+
+
+### 状态(state)和属性(props)之间有何不同
+`State`是一种数据结构，用于组件挂载时所需的默认值。State可能会随着时间的推移而发生突变，但多数时候是作为用户事件行为的结果。
+
+`props`是组件的配置。props由父组件传递给子组件，就子组件而言，props是不可变的。组件不能改变自身props，但是可以把其他子组件的props防止一起管理。 
+props也不仅仅是数据，回调函数也可以通过props传递。
 
 
 
@@ -168,3 +206,20 @@ SSR带来的问题：
 
 在 React 组件中，应该在 componentDidMount 中发起网络请求。这个方法会在组件第一次“挂载”(被添加到 DOM)时执行，在组件的生命周期中仅会执行一次。
 更重要的是，你不能保证在组件挂载之前 Ajax 请求已经完成，如果是这样，也就意味着你将尝试在一个未挂载的组件上调用 setState，这将不起作用。
+
+
+### 受控组件(controlled component)
+
+一个输入表单元素，它的值通过 React 的这种方式来控制，这样的元素就被称为"受控元素"。
+
+在 HTML 中，类似 <input>, <textarea> 和 <select> 这样的表单元素会维护自身的状态，并基于用户的输入来更新。但在 React 中会有些不同，包含表单元素的组件将会在 state 中追踪输入的值。
+
+
+### 除了在构造函数中绑定 this，还有其它方式吗
+
+你可以使用属性初始值设定项(property initializers)来正确绑定回调，create-react-app 也是默认支持的。在回调中你可以使用箭头函数，但问题是每次组件渲染时都会创建一个新的回调。
+
+
+### 怎么阻止组件的渲染
+
+在组件的 render 方法中返回 null 并不会影响触发组件的生命周期方法
