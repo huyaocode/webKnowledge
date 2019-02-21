@@ -1,3 +1,8 @@
+### v-bind和v-model的区别
+
+1.v-bind用来绑定数据和属性以及表达式，缩写为'：'
+2.v-model使用在表单中，实现双向数据绑定的，在表单元素外使用不起作用
+
 ### 什么是 mvvm？
 
 MVVM 是 Model-View-ViewModel 的缩写。mvvm 是一种设计思想。Model 层代表数据模型，也可以在 Model 中定义数据修改和操作的业务逻辑；View 代表 UI 组件，它负责将数据模型转化成 UI 展现出来，ViewModel 是一个同步 View 和 Model 的对象。
