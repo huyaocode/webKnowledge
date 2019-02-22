@@ -15,3 +15,36 @@
  - 不擅长CPU密集型业务
    - 由于Node单线程，如果长时间运行计算将导致CPU不能释放，使得后续I/O无法发起。（解决办法是分解大型运算为多个小任务，不阻塞I/O发起）
 
+
+### global对象
+与在浏览器端不同，浏览器端将希望全局访问的对象挂到window上，而nodejs则将希望全局访问的对象挂到global对象上
+
+ - CommonJS
+ - Buffer、process、console
+ - timer定时器相关
+
+### setImmediate()、setTimeout(fn, 0) 与 process.nextTick()
+两个都是传入一个回调函数，当同步事件执行完之后马上执行。
+
+执行顺序依次是：
+ - process.nextTick()
+   - 将回调函数加入到 当前执行栈的尾部，任务队列之前
+ - setTimeout(fn, 0)
+   - 回调函数加入到 任务队列尾部。即使是0，也会又4ms的延时
+ - setImmediate()
+   - 将回调函数插入到任务队列的最末尾，也不会造成阻塞，但不妨碍其他的异步事件
+
+
+```js
+setImmediate(() => {
+  console.log('setImmediate');
+})
+
+setTimeout(() => {
+  console.log('setImmediate');
+}, 0)
+
+process.nextTick(() => {
+  console.log('next');
+})
+```
