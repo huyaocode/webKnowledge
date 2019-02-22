@@ -114,3 +114,26 @@ function ajax(url, handler){
  - 循环引用(两个对象相互引用)
  - 控制台日志(console.log)
  - 移除存在绑定事件的 DOM 元素(IE)
+
+
+### 为什么要使用模块化？都有哪几种方式可以实现模块化，各有什么特点？
+
+模块化可以给我们带来以下好处
+
+ - 解决命名冲突
+ - 提供复用性
+ - 提高代码可维护性
+
+实现模块化方式：
+ - 立即执行函数
+ - AMD 和 CMD
+ - CommonJS
+ - ES Module
+
+
+### setTimeout、setInterval
+常见的定时器函数有 `setTimeout`、`setInterval`、`requestAnimationFrame`，但setTimeout、setInterval并不是到了哪个时间就执行，**而是到了那个时间把任务加入到异步事件队列中**。
+
+因为 JS 是单线程执行的，如果某些同步代码影响了性能，就会导致 setTimeout 不会按期执行。
+
+而setInterval可能经过了很多同步代码的阻塞，导致不正确了，可以使用setTimeout每次获取Date值，计算距离下一次期望执行的时间还有多久来动态的调整。
