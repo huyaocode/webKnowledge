@@ -137,3 +137,26 @@ function ajax(url, handler){
 因为 JS 是单线程执行的，如果某些同步代码影响了性能，就会导致 setTimeout 不会按期执行。
 
 而setInterval可能经过了很多同步代码的阻塞，导致不正确了，可以使用setTimeout每次获取Date值，计算距离下一次期望执行的时间还有多久来动态的调整。
+
+[requestAnimationFrame](https://developer.mozilla.org/zh-CN/docs/Web/API/Window/requestAnimationFrame) 自带函数节流功能，基本可以保证在 16.6 毫秒内只执行一次（不掉帧的情况下），并且该函数的延时效果是精确的，没有其他定时器时间不准的问题
+
+
+
+### cookie，localStorage，sessionStorage，indexDB
+
+|     特性     |                   cookie                   |       localStorage       | sessionStorage |         indexDB          |
+| :----------: | :----------------------------------------: | :----------------------: | :------------: | :----------------------: |
+| 数据生命周期 |     一般由服务器生成，可以设置过期时间     | 除非被清理，否则一直存在 | 页面关闭就清理 | 除非被清理，否则一直存在 |
+| 数据存储大小 |                     4K                     |            5M            |       5M       |           无限           |
+| 与服务端通信 | 每次都会携带在 header 中，对于请求性能影响 |          不参与          |     不参与     |          不参与          |
+
+从上表可以看到，`cookie` 已经不建议用于存储。如果没有大量数据存储需求的话，可以使用 `localStorage` 和 `sessionStorage` 。对于不怎么改变的数据尽量使用 `localStorage` 存储，否则可以用 `sessionStorage` 存储。
+
+对于 `cookie`，我们还需要注意安全性。
+
+|   属性    |                             作用                             |
+| :-------: | :----------------------------------------------------------: |
+|   value   | 如果用于保存用户登录态，应该将该值加密，不能使用明文的用户标识 |
+| http-only |            不能通过 JS 访问 Cookie，减少 XSS 攻击            |
+|  secure   |               只能在协议为 HTTPS 的请求中携带                |
+| same-site |    规定浏览器不能在跨域请求中携带 Cookie，减少 CSRF 攻击     |
