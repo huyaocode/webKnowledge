@@ -1,7 +1,8 @@
 # XSS 跨站脚本攻击
 ![xss](img/xss.png) 
 
-XSS ( Cross Site Scripting )
+XSS ( Cross Site Scripting ) 简单点来说，就是攻击者想尽一切办法将可以执行的代码注入到网页中。
+
 XSS是指恶意攻击者利用网站没有对用户提交数据进行转义处理或者过滤不足的缺点，进而添加一些代码，嵌入到web页面中去。使别的用户访问都会执行相应的嵌入代码。
 
 从而盗取用户资料、利用用户身份进行某种动作或者对访问者进行病毒侵害的一种攻击方式。
@@ -60,6 +61,13 @@ var data = "hello"; alert(1);"";
 
 
 ## XSS 防御
+
+对于 XSS 攻击来说，通常有两种方式可以用来防御。
+ - 转义字符
+ - CSP 内容安全策略
+
+### 转义字符
+
  - 普通的输入 - 编码
    - 对用户输入数据进行HTML Entity编码（使用转义字符）
    - "
@@ -77,12 +85,12 @@ var data = "hello"; alert(1);"";
    - 使用DOM Parse转换，校正不配对的DOM标签和属性
 
 
-### 对于会在DOM中出现的字符串（用户数据）：
+#### 对于会在DOM中出现的字符串（用户数据）：
 
  < 转义为 \&lt;
  > 转义为 \&gt;
 
-### 对于可能出现在DOM元素属性上的数据
+#### 对于可能出现在DOM元素属性上的数据
 
  " 转义为 \&quot;
  ' 转义为 \&9039;
@@ -90,7 +98,7 @@ var data = "hello"; alert(1);"";
 
  & 这个字符如果要转义，那么一定要放在转移函数的第一个来做
 
-### 避免JS中的插入
+#### 避免JS中的插入
 ```js
 var data = "#{data}";
 var data = "hello"; alert(1);"";
@@ -101,7 +109,7 @@ var data = "hello"; alert(1);"";
 再 " -> \\"
 ```
 
-### 富文本
+#### 富文本
 
 按照黑名单过滤： script等
 但是html标签中能执行html代码的属性太多了，比如onclick, onhover,onerror, <a href="jacascript:alert(1)">
@@ -144,6 +152,30 @@ function xssFilter (html) {
 }
 ```
 
-## 使用npm包来简化操作
+#### 使用npm包来简化操作
 [xss文档](https://github.com/leizongmin/js-xss/blob/master/README.zh.md)
 
+
+### CSP 内容安全策略
+
+CSP 本质上就是建立白名单，开发者明确告诉浏览器哪些外部资源可以加载和执行。我们只需要配置规则，如何拦截是由浏览器自己实现的。我们可以通过这种方式来尽量减少 XSS 攻击。
+
+通常可以通过两种方式来开启 CSP：
+ - 设置 HTTP Header 中的 Content-Security-Policy
+ - 设置 meta 标签的方式 `<meta http-equiv="Content-Security-Policy">`
+
+以设置 HTTP Header 来举例
+ - 只允许加载本站资源
+```
+Content-Security-Policy: default-src ‘self’
+```
+ - 图片只允许加载 HTTPS 协议
+```
+Content-Security-Policy: img-src https://*
+```
+ - 允许加载任何来源框架
+```
+Content-Security-Policy: child-src 'none'
+```
+
+[CSP](https://developer.mozilla.org/zh-CN/docs/Web/HTTP/CSP) ( Content Security Policy )

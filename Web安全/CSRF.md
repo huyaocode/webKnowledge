@@ -1,22 +1,40 @@
 # CSRF 跨站请求伪造
 （Cross Site Request Forgy）
-打开同一浏览器时其他的网站对本网站造成的影响。
+打开同一浏览器时其他的网站对本网站造成的影响。原理就是攻击者构造出一个后端请求地址，诱导用户点击或者通过某些途径自动发起请求。如果用户是在登录状态下的话，后端就以为是用户在操作，从而进行相应的逻辑。
 ![原理](../img/csrf.png)
+
+
+举个例子，用户同时打开了A网站和钓鱼网站。 假设A网站中有一个通过 GET 请求提交用户评论的接口，那么攻击者就可以在钓鱼网站中加入一个图片，图片的地址就是评论接口。
+```html
+<img src="http://www.domain.com/xxx?comment='attack'"/>
+```
 
 
 ## CSRF攻击原理
 1. 用户登录A网站
-2. A网站确认身份
+2. A网站确认身份（给客户端cookie）
 3. B网站页面向A网站发起请求（带上A网站身份）
 
 
 ## CSRF防御
+1. Get 请求不对数据进行修改
+2. 不让第三方网站访问到用户 Cookie
+3. 阻止第三方网站请求接口
+4. 请求时附带验证信息，比如验证码或者 Token
+
+ - SameSite
+   - 可以对 Cookie 设置 SameSite 属性。该属性表示 Cookie 不随着跨域请求发送，可以很大程度减少 CSRF 的攻击，但是该属性目前并不是所有浏览器都兼容。
  - Token验证
    - cookie是发送时自动带上的，而不会主动带上Token，所以在每次发送时主动发送Token
  - Referer验证
-   - 判断页面来源
+   - 对于需要防范 CSRF 的请求，我们可以通过验证 Referer 来判断该请求是否为第三方网站发起的。
  - 隐藏令牌
    - 主动在HTTP头部中添加令牌信息
+
+
+禁止第三方网站带cookies
+
+[same-site](https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Cookies#SameSite_Cookies)属性。 设置只有同一站点的请求才能携带cookie
 
 
 ## CSRF蠕虫
@@ -32,9 +50,3 @@
  - 盗取用户资金
  - 冒充用户发帖背锅
  - 损坏网站名誉
-
-
-## CSRF防御
-禁止第三方网站带cookies
-
-[same-site](https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Cookies#SameSite_Cookies)属性。 设置只有同一站点的请求才能携带cookie

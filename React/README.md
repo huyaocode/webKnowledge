@@ -85,12 +85,6 @@ key是React中用于追踪哪些列表中元素被修改、删除或者被添加
 变量的作用域不同，less在全局定义，就作用在全局，在代码块中定义，就作用于整哥代码块。而sass只作用域全局。
 
 
-### 高阶组件 HOC (higher order component)
-
-高阶组件是一个以组件为参数并返回一个新组件的函数。
-
-HOC 允许你重用代码、逻辑和引导抽象。最常见的可能是 Redux 的 connect 函数。除了简单分享工具库和简单的组合，HOC 最好的方式是共享 React 组件之间的行为。如果你发现你在不同的地方写了大量代码来做同一件事时，就应该考虑将代码重构为可重用的 HOC。
-
 
 ### react生命周期中，最适合与服务端进行数据交互的是哪个函数
 `componentDidMount`：在这个阶段，**实例和dom已经挂载完成，可以进行相关的dom操作**。
@@ -223,3 +217,97 @@ SSR带来的问题：
 ### 怎么阻止组件的渲染
 
 在组件的 render 方法中返回 null 并不会影响触发组件的生命周期方法
+
+
+### 前端路由原理
+前端路由实现起来其实很简单，本质就是监听 URL 的变化，然后匹配路由规则，显示相应的页面，并且无须刷新页面。目前前端使用的路由就只有两种实现方式。
+ - Hash 模式
+ - History 模式
+
+#### Hash 模式
+
+`www.test.com/#/` 就是 Hash URL，当 # 后面的哈希值发生变化时，可以通过 hashchange 事件来监听到 URL 的变化，从而进行跳转页面，并且无论哈希值如何变化，服务端接收到的 URL 请求永远是 www.test.com。
+```js
+window.addEventListener('hashchange', () => {
+  // ... 具体逻辑
+})
+```
+
+#### History 模式
+History 模式是 HTML5 新推出的功能，主要使用 `history.pushState` 和 `history.replaceState` 改变 URL。
+
+通过 History 模式改变 URL 同样不会引起页面的刷新，只会更新浏览器的历史记录。
+
+```js
+// 新增历史记录
+history.pushState(stateObject, title, URL)
+// 替换当前历史记录
+history.replaceState(stateObject, title, URL)
+```
+
+当用户做出浏览器动作时，比如点击后退按钮时会触发 popState 事件
+```js
+window.addEventListener('popstate', e => {
+  // e.state 就是 pushState(stateObject) 中的 stateObject
+  console.log(e.state)
+})
+```
+
+#### 两种模式对比
+ - Hash 模式只可以更改 # 后面的内容，History 模式可以通过 API 设置任意的同源 URL
+ - History 模式可以通过 API 添加任意类型的数据到历史记录中，Hash 模式只能更改哈希值，也就是字符串
+ - Hash 模式无需后端配置，并且兼容性好。History 模式在用户手动输入地址或者刷新页面的时候会发起 URL 请求，后端需要配置 index.html 页面用于匹配不到静态资源的时候
+
+
+### Vue 和 React区别
+改变数据方式不同，Vue 修改状态相比来说要简单许多，React 需要使用 setState 来改变状态，并且使用这个 API 也有一些坑点。
+ Vue 的底层使用了依赖追踪，页面更新渲染已经是最优的了，但是 React 还是需要用户手动去优化这方面的问题。
+
+React 需要使用 JSX，Vue 使用了模板语法
+
+
+
+### 高阶组件 HOC (higher order component)
+
+高阶组件是一个以组件为参数并返回一个新组件的函数。
+
+HOC 允许你重用代码、逻辑和引导抽象。最常见的可能是 Redux 的 connect 函数。除了简单分享工具库和简单的组合，HOC 最好的方式是共享 React 组件之间的行为。如果你发现你在不同的地方写了大量代码来做同一件事时，就应该考虑将代码重构为可重用的 HOC。
+
+```js
+function add(a, b) {
+    return a + b
+}
+```
+现在如果我想给这个 add 函数添加一个输出结果的功能，那么你可能会考虑我直接使用 console.log 不就实现了么。说的没错，但是如果我们想做的更加优雅并且容易复用和扩展，我们可以这样去做：
+```js
+function withLog (fn) {
+    function wrapper(a, b) {
+        const result = fn(a, b)
+        console.log(result)
+        return result
+    }
+    return wrapper
+}
+const withLogAdd = withLog(add)
+withLogAdd(1, 2)
+```
+这个做法在函数式编程里称之为高阶函数，大家都知道 React 的思想中是存在函数式编程的，高阶组件和高阶函数就是同一个东西。我们实现一个函数，传入一个组件，然后在函数内部再实现一个函数去扩展传入的组件，最后返回一个新的组件，这就是高阶组件的概念，作用就是为了更好的复用代码。
+
+
+### 事件机制
+React 其实自己实现了一套事件机制，首先我们考虑一下以下代码：
+```js
+const Test = ({ list, handleClick }) => ({
+    list.map((item, index) => (
+        <span onClick={handleClick} key={index}>{index}</span>
+    ))
+})
+```
+
+事实当然不是，JSX 上写的事件并没有绑定在对应的真实 DOM 上，而是通过事件代理的方式，将所有的**事件都统一绑定在了`document`上**。这样的方式不仅减少了内存消耗，还能在组件挂载销毁时统一订阅和移除事件。
+
+另外冒泡到 document 上的事件也不是原生浏览器事件，而是**React自己实现的合成事件**（SyntheticEvent）。因此我们如果不想要事件冒泡的话，调用 event.stopPropagation 是无效的，而应该调用 event.preventDefault。
+
+那么实现合成事件的目的好处有两点，分别是：
+ - 合成事件首先抹平了浏览器之间的兼容问题，另外这是一个跨浏览器原生事件包装器，赋予了跨浏览器开发的能力
+ - 对于原生浏览器事件来说，浏览器会给监听器创建一个事件对象。如果你有很多的事件监听，那么就需要分配很多的事件对象，造成高额的内存分配问题。但是对于合成事件来说，有一个事件池专门来管理它们的创建和销毁，当事件需要被使用时，就会从池子中复用对象，事件回调结束后，就会销毁事件对象上的属性，从而便于下次复用事件对象。
