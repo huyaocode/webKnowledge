@@ -1,6 +1,12 @@
-作者：鞠婧祎_♪
-链接：https://www.nowcoder.com/discuss/146655?tdsourcetag=s_pctim_aiomsg
-来源：牛客网
+## 好文
+[CSS像素、物理像素、逻辑像素、设备像素比、PPI、Viewport](https://github.com/jawil/blog/issues/21)
+[屏幕尺寸，分辨率，像素，PPI之间到底什么关系](https://www.jianshu.com/p/c3387bcc4f6e)
+
+
+
+
+
+## 面经
 
 【前端】绿盟科技实习面经：https://www.nowcoder.com/discuss/113284
 【前端】百信银行校园招聘：https://www.nowcoder.com/discuss/112972
