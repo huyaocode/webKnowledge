@@ -30,18 +30,23 @@ box-sizing: border-box;
 ```
 
 
-### BFC 布局
-[[布局概念] 关于CSS-BFC深入理解](https://juejin.im/post/5909db2fda2f60005d2093db)
+### BFC
+[什么是BFC](https://www.cnblogs.com/libin-1/p/7098468.html)
+
+W3C对BFC定义：
+> 浮动元素和绝对定位元素，非块级盒子的块级容器（例如 inline-blocks, table-cells, 和 table-captions），以及overflow值不为“visiable”的块级盒子，都会为他们的内容创建新的BFC（块级格式上下文）。
 
 BFC(Block formatting context)直译为"块级格式化上下文"。它是一个独立的渲染区域，只有Block-level box参与， 它规定了内部的Block-level Box如何布局，并且与这个区域外部毫不相干。
 
 BFC作用：
-1. BFC元素不与浮动元素相重叠（两栏布局）
+1. 利用BFC避免外边距折叠
 2. 清除内部浮动 （撑开高度）
    1. 原理: 触发父div的BFC属性，使下面的子div都处在父div的同一个BFC区域之内
-3. 分属于不同的BFC时，可以阻止margin重叠
+3. 避免文字环绕
+4. 分属于不同的BFC时，可以阻止margin重叠
+5. 多列布局中使用BFC
 
-如何生成BFC：（脱离文档流）
+如何生成BFC：（脱离文档流，满足下列的任意一个或多个条件即可）
 1. 根元素，即HTML元素（最大的一个BFC）
 2. float的值不为none
 3. position的值为absolute或fixed
@@ -591,3 +596,22 @@ p:first-child {color: red}
  - 写入CSS， 减少HTTP请求
  - 适用于小图片
  - base64的体积约为原图4/3
+
+
+
+### margin叠加几种情况
+margin叠加的意思是：当两个或者更多的垂直外边距 相遇时，它们将形成一个外边距，这个外边距的高度等于两个发生叠加的外边距中高度较大者。
+
+1. 当一个元素出现在另一个元素上面时，第一个元素的底边外边距与第二个元素的顶边外边距发生叠加。如图：
+![叠加](../img/marginSuperposition1.png)
+
+2. 当一个元素在另一个元素中时，它们的顶边距和低边距也会发生叠加
+![叠加2](../img/marginSuperposition2.png)
+
+3. 如果一个元素是空元素（即一个元素没有内容，内边距和边框），这种情况外边距的顶边距和低边距碰在一起也会发生叠加
+![叠加3](../img/marginSuperposition3.png)
+
+4. 在上面那种空元素的情况，如果该空元素与另一个元素的外边距碰在一起，也会发生叠加。
+![叠加4](../img/marginSuperposition4.png)
+
+以上4种外边距叠加情况**只会发生在普通文档流的垂直方向**。行内框、浮动框、绝对定位框之间的外边距不会发生叠加，同样水平方向也不会发生叠加。
