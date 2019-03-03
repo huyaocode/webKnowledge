@@ -34,7 +34,7 @@
 限制范围
  - cookie、localstorage和 indexDB无法读取
  - DOM 无法获得
- - Ajax 请求不能发怂
+ - Ajax 请求不能发送
 
 
 参考链接： [浏览器同源政策](https://www.ruanyifeng.com/blog/2016/04/same-origin-policy.html)

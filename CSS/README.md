@@ -105,7 +105,9 @@ BFC布局规则：
 浮动的元素布局时不会占据父元素的布局空间，即父元素布局时不会管浮动元素，浮动元素有可能超出父元素，从而对其他元素造成影响。
 
 方法一：让父元素变为一个BFC。
-父元素 overflow: auto/hidden。 让父元素去关注里面的高度 
+父元素 overflow: auto/hidden。 让父元素去关注里面的高度。
+必须定义width或zoom:1，同时不能定义height，使用overflow:auto时，浏览器会自动检查浮动区域的高度
+
 
 方法二： 使用伪元素清楚浮动
 ```css
@@ -387,7 +389,7 @@ display: -webkit-box;
 
 
 
-### CSS3 有哪些新特性？
+###  CSS3新特性？
 
 - 新增选择器 p:nth-child(n){color: rgba(255, 0, 0, 0.75)}
 - 弹性盒模型 display: flex;
