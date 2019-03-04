@@ -26,9 +26,16 @@
 
 # TODO
  - 页面加载时何时会阻塞？ 关系是怎样
- - 经常遇到的浏览器的兼容性有哪些？原因，解决方法是什么，常用 hack 的技巧 ？
  - 懒加载
- - SVG
- - canvas
  - package-lock.json
  - webpack按需加载怎么做
+ - 腾讯一面中不会的问题
+   - TCP / RTT
+   - **CDN**
+   - Ajax怎么带cookie
+   - 缓存
+   - redux
+     - 组件间通信
+     - setstate实现异步
+   - 性能优化
+   - react与vue区别

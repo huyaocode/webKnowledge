@@ -75,3 +75,12 @@ xhr.onreadystatechange = function() {
 xhr.open('GET', "...", "是否异步");
 xhr.send();
 ```
+
+
+### websocket
+在单个 TCP 连接上进行全双工通讯的协议。在 WebSocket API 中，浏览器和服务器只需要完成一次握手，两者之间就直接可以创建**持久性**的连接，并进行**双向**数据传输。
+
+ - Socket.onopen	连接建立时触发
+ - Socket.onmessage	客户端接收服务端数据时触发
+ - Socket.onerror	通信发生错误时触发
+ - Socket.onclose	连接关闭时触发
