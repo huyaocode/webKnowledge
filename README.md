@@ -29,13 +29,17 @@
  - 懒加载
  - package-lock.json
  - webpack按需加载怎么做
- - 腾讯一面中不会的问题
-   - TCP / RTT
-   - **CDN**
-   - Ajax怎么带cookie
-   - 缓存
-   - redux
-     - 组件间通信
-     - setstate实现异步
-   - 性能优化
-   - react与vue区别
+
+
+
+腾讯一面中不会的问题
+ - TCP / RTT
+ - **CDN**
+ - Ajax怎么带cookie
+ - 缓存
+ - redux
+   - 组件间通信
+   - setstate怎么实现异步的哪
+ - DOM的拷贝转移
+ - 性能优化
+ - react与vue区别

@@ -169,24 +169,6 @@ CSP Content-Security-Policy
  - `'Content-Security-Policy': 'default-src' \'self\'; form-action\'self\' '` 表示只能加载本域下的资源，只能向本域发送表单请求
 
 
-## HTTPS
-HTTPS 还是通过了 HTTP 来传输信息，但是信息通过 TLS 协议进行了加密。
-
-![https](../img/https.png)
-
-### TLS
-TLS 协议位于传输层之上，应用层之下。首次进行 TLS 协议传输需要两个 RTT ，接下来可以通过 Session Resumption 减少到一个 RTT。
-
-在 TLS 中使用了两种加密技术，分别为：对称加密和非对称加密。
-
-
-#### 对称加密
-对称加密就是两边拥有相同的秘钥，两边都知道如何将密文加密解密。
-
-
-#### 非对称加密
-有公钥私钥之分，公钥所有人都可以知道，可以将数据用公钥加密，但是将数据解密必须使用私钥解密，私钥只有分发公钥的一方才知道。
-
 
 #### TLS 握手过程如下图
 
