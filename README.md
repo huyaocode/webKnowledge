@@ -29,7 +29,7 @@
  - 懒加载
  - package-lock.json
  - webpack按需加载怎么做
-
+ - [DOM操作](https://blog.csdn.net/Night_Emperor/article/details/78471051)
 
 
 腾讯一面中不会的问题
@@ -43,3 +43,4 @@
  - DOM的拷贝转移
  - 性能优化
  - react与vue区别
+

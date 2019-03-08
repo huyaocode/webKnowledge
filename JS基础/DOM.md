@@ -215,6 +215,22 @@ document
    - 设备物理屏幕的水平坐标(screenX)和垂直坐标(screenY)
 
 
+
+### focus/blur与focusin/focusout的区别与联系
+
+1. focus/blur不冒泡，focusin/focusout冒泡
+2. focus/blur兼容性好，focusin/focusout在除FireFox外的浏览器下都保持良好兼容性，如需使用事件托管，可考虑在FireFox下使用事件捕获elem.addEventListener('focus', handler, true)
+
+
+
+### mouseover/mouseout与mouseenter/mouseleave的区别与联系
+
+1. mouseover/mouseout是标准事件，**所有浏览器都支持**；mouseenter/mouseleave是IE5.5引入的特有事件后来被DOM3标准采纳，现代标准浏览器也支持
+2. mouseover/mouseout是**冒泡**事件；mouseenter/mouseleave**不冒泡**。需要为**多个元素监听鼠标移入/出事件时，推荐mouseover/mouseout托管，提高性能**
+3. 标准事件模型中event.target表示发生移入/出的元素,**vent.relatedTarget**对应移出/如元素；在老IE中event.srcElement表示发生移入/出的元素，**event.toElement**表示移出的目标元素，**event.fromElement**表示移入时的来源元素
+
+
+
 ### IE 的事件处理和 W3C 的事件处理有哪些区别？
 
 绑定事件
