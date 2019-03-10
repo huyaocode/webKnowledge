@@ -32,7 +32,6 @@
  - [DOM操作](https://blog.csdn.net/Night_Emperor/article/details/78471051)
 
 
-腾讯一面中不会的问题
  - TCP / RTT
  - **CDN**
  - Ajax怎么带cookie
