@@ -377,3 +377,6 @@ MyPromise.prototype.then = function(onFulfilled, onRejected) {
 Promise.resolve(4).then().then((value) => console.log(value))
 ```
  - 接下来就是一系列判断状态的逻辑，当状态不是等待态时，就去执行相对应的函数。如果状态是等待态的话，就往回调函数中 push 函数，比如如下代码就会进入等待态的逻辑
+
+
+### [pormise完整代码](./promise.js)

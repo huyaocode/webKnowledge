@@ -19,6 +19,9 @@
 
 ## [编写高性能的Javascript](编写高性能的Javascript.md)
 
+## [浏览器渲染](浏览器渲染.md)
+
+## [CDN](CDN.md)
 
 
 ### 插入几万个 DOM，如何实现页面不卡顿？

@@ -1,24 +1,23 @@
 # 网络知识
 
-## [UDP](UDP.md)
-
-
-## [TCP](TCP.md)
-
+## [Ajax](Ajax.md)
 
 ## [HTTP](HTTP.md)
 
+## [TCP](TCP.md)
+
+## [UDP](UDP.md)
 
 ## [跨域](./跨域.md)
 
-
-## [HTTP缓存](缓存.md)
-
+## [缓存](缓存.md)
 
 ## [cookie和session](cookie和session.md)
 
-
 ## [从输入URL到页面加载完成的过程](从输入URL到页面加载完成的过程.md)
+
+## [HTTPS](HTTPS.md)
+
 
 ### OSI 七层协议
  - 应用层
@@ -56,25 +55,6 @@ DNS 的作用就是通过域名查询到具体的 IP。
  - WebSocket
  - CORS
 
-
-### 如何创建Ajax
-```js
-var xhr;
-if(window.XMLHttpRequest) {
-  xhr = new XMLHttpRequest();
-} else {
-  xhr = new ActiveXObject("Microsoft.XMLHTTP");
-}
-
-xhr.onreadystatechange = function() {
-  if(xhr.readyState == 4 && xhr.status == 200) {
-    dosome(xhr.responseText);
-  }
-}
-
-xhr.open('GET', "...", "是否异步");
-xhr.send();
-```
 
 
 ### websocket
