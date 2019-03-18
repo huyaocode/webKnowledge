@@ -75,7 +75,7 @@
 
 
 一句话总结：
-!important > 行内样式 > ID选择器 > (类选择器 | 属性选择器 | 伪类选择器 )> 元素选择器
+!important > 行内样式 > ID选择器 > (类选择器 | 属性选择器 | 伪类选择器 ) > 元素选择器
 ![大鱼吃小鱼](http://image.zhangxinxu.com/image/blog/201208/specifishity1-1.png)
 
 

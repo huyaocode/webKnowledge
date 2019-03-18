@@ -1,7 +1,7 @@
 # ES6
 
 ### var、let 及 const 区别？
- - var声明的变量会挂载在window上，而let和const不会
+ - 全局申明的var变量会挂载在window上，而let和const不会
  - var声明变量存在变量提升，let和const不会
  - let、const 的作用范围是块级作用域，而var的作用范围是函数作用域
  - 同一作用域下let和const不能声明同名变量，而var可以
