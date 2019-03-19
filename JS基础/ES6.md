@@ -380,3 +380,62 @@ Promise.resolve(4).then().then((value) => console.log(value))
 
 
 ### [pormise完整代码](./promise.js)
+
+
+### 私有方法和私有属性（阿里一面）
+
+[阮老师 | ES6入门](https://es6.ruanyifeng.com/?search=%E7%A7%81%E6%9C%89&x=0&y=0#docs/class#%E7%A7%81%E6%9C%89%E6%96%B9%E6%B3%95%E5%92%8C%E7%A7%81%E6%9C%89%E5%B1%9E%E6%80%A7)
+
+
+#### 现有的解决方案
+
+私有方法和私有属性，是只能在类的内部访问的方法和属性，外部不能访问。这是常见需求，有利于代码的封装，但 ES6 不提供，只能通过变通方法模拟实现。
+
+一种做法是在命名上加以区别，即在函数名或属性名前加`_`，但这并不安全，只是一种团队规范。
+
+另一种方法就是索性**将私有方法移出类，放到模块里**，因为模块内部的所有方法都是对外可见的。
+```js
+class Widget {
+  foo (baz) {
+    bar.call(this, baz);
+  }
+
+  // ...
+}
+
+function bar(baz) {
+  return this.snaf = baz;
+}
+```
+上面代码中，foo是公开方法，内部调用了bar.call(this, baz)。这使得bar实际上成为了当前模块的私有方法。
+
+
+还有一种方法是利用**Symbol值的唯一性**，将私有方法的名字命名为一个Symbol值。
+```js
+const bar = Symbol('bar');
+const snaf = Symbol('snaf');
+
+export default class myClass{
+
+  // 公有方法
+  foo(baz) {
+    this[bar](baz);
+  }
+
+  // 私有方法
+  [bar](baz) {
+    return this[snaf] = baz;
+  }
+
+  // ...
+};
+```
+
+上面代码中，bar和snaf都是Symbol值，一般情况下无法获取到它们，因此达到了私有方法和私有属性的效果。但是也不是绝对不行，Reflect.ownKeys()依然可以拿到它们。
+
+```js
+const inst = new myClass();
+
+Reflect.ownKeys(myClass.prototype)
+// [ 'constructor', 'foo', Symbol(bar) ]
+```

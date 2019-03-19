@@ -76,3 +76,17 @@ xhr.open("POST", url, true);
 xhr.setRequestHeader("Content-Type": "application/x-www-form-urlencoded");
 xhr.send("key1=value1&key2=value2");
 ``` 
+
+
+### Ajax与cookie
+ - ajax会自动带上同源的cookie，不会带上不同源的cookie
+ - 可以通过前端设置withCredentials为true， 后端设置Header的方式让ajax自动带上不同源的cookie，但是这个属性对同源请求没有任何影响。会被自动忽略。
+
+[withCredentials | MDN](https://developer.mozilla.org/zh-CN/docs/Web/API/XMLHttpRequest/withCredentials)
+
+```js
+var xhr = new XMLHttpRequest();
+xhr.open('GET', 'http://example.com/', true);
+xhr.withCredentials = true;
+xhr.send(null);
+```
