@@ -30,3 +30,4 @@
  - redux
    - setstate怎么实现异步的哪
  - 前端路由怎么做，原理是什么 
+ - LocalStorage
