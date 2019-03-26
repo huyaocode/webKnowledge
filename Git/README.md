@@ -177,3 +177,54 @@ git commit --amend
 
 ### 撤消对文件的修改
 使用`git checkout -- <file>` 可以撤销修改（未保存到暂存区）
+
+
+### 远程仓库
+
+ - 添加远程仓库
+   - `git remote add <shortname> <url>`
+ - 从远程仓库中抓取与拉取
+   - `git fetch [remote-name]`
+ - 推送到远程仓库
+   - `git push [remote-name] [branch-name]`
+ - 查看远程仓库
+   - `git remote show [remote-name]`
+ - 远程仓库的重命名
+   - `git remote rename`
+
+
+
+### 打标签
+Git 可以给历史中的某一个提交打上标签，以示重要。
+
+Git 使用两种主要类型的标签：轻量标签（lightweight）与附注标签（annotated）。通常建议创建附注标签。
+
+ - 一个轻量标签很像一个不会改变的分支 - 它只是一个特定提交的引用。
+ - 附注标签是存储在 Git 数据库中的一个完整对象。 它们是可以被校验的；其中包含打标签者的名字、电子邮件地址、日期时间；还有一个标签信息；并且可以使用 GNU Privacy Guard （GPG）签名与验证。
+
+列出标签`git tag`
+
+附注标签
+ - 创建
+   - `git tag -a v1.4 -m '描述'`
+ - 查看某版本
+   - `git show 版本号`
+
+轻量标签
+ - 轻量标签本质上是将提交校验和存储到一个文件中 - 没有保存任何其他信息，不些描述
+ - `git tag v1.4-lw`
+
+共享标签
+ - 默认情况下，git push 命令并不会传送标签到远程仓库服务器上。创建完标签后你必须显式地推送标签到共享服务器上。 这个过程就像共享远程分支一样 - 你可以运行 `git push origin [tagname]`。
+ - 如果想要一次性推送很多标签，也可以使用带有 --tags 选项的 git push 命令。 这将会把所有不在远程仓库服务器上的标签全部传送到那里。
+
+删除标签
+ - 删本地，并不会从任何远程仓库中移除这个标签
+   - `git tag -d <tagname>`
+ - 删远程
+   - `git push <remote> :refs/tags/<tagname>`
+
+
+
+### Git 别名
+可为一些操作器别名，例如： `git config --global alias.last 'log -1 HEAD'`后， 使用`git last` 就可以看到最后一次提交
