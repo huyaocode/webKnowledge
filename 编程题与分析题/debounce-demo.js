@@ -40,5 +40,9 @@ setInterval(function() {
  * 预期效果：
  * 
  * 每隔500ms，输出一个自增的数
- * 即打印：0 1 2 3 ...
+ * 即打印：
+    someCounter3:  0
+    someCounter3:  1
+    someCounter3:  2
+    someCounter3:  3
  */
