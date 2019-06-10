@@ -1,5 +1,7 @@
 # 编程题与分析题
 
+链接可能不够完整，直接看对应目录
+
  - [bind、apply实现](bind、apply实现.md)
  - [DOM树遍历](DOM树遍历.md)
  - [README](README.MD)
