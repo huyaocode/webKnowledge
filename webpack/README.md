@@ -1,38 +1,46 @@
 ### webpack简介
-webpack是一个前端模块化打包工具，主要由入口，出口，loader，plugins四个部分。
 
-devDependencies 节点下的模块是我们在开发时需要用的，比如项目中使用的 gulp ，压缩css、js的模块。这些模块在我们的项目部署后是不需要的，所以我们可以使用 -save-dev 的形式安装
+随着前端项目复杂性不断提高，JS的代码量变的越来越大，必须做拆分。但如果仅是拆成几个 js 文件，然后在用`script`标签去引入这些文件又会使导致以下几个问题：
+ - 影响加载速度
+   - JS文件变多，加载JS文件数量过多导致页面加载速度编码
+ - 代码的引入次序
+   - 使用script标签引入JS时还必须控制JS的顺序。在单个JS文件编写的时候，如果要使用其他的JS文件中的一些变量和函数，不能直观的知道这个变量或函数是在哪个文件定义的。
+ - 命名空间污染
+   - JS虽然拆开了，但实际上在浏览器运行时就像把所有文件都何在一起了一样
 
+模块化可以解决上面的问题，但是模块化后的代码是使用`import`或`export`这样的写法来实现的，浏览器不能识别，所以需要一个打包工具。
 
-### package-lock.json
-概括很简单，就是锁定安装时的包的版本号，并且需要上传到git，以保证其他人在npm install时大家的依赖能保证一致。
+`webpack`是一个前端模块化打包工具，最开始它只能打包JS文件，但是随着webpack的发展，他还能打包如CSS、图片等文件。主要由入口，出口，loader，plugins四个部分。
 
-根据官方文档，这个package-lock.json 是在 `npm install`时候生成一份文件，用以记录当前状态下实际安装的各个npm package的具体来源和版本号。
+### 模块化
 
-它有什么用呢？因为npm是一个用于管理package之间依赖关系的管理器，它允许开发者在pacakge.json中间标出自己项目对npm各库包的依赖。你可以选择以如下方式来标明自己所需要库包的版本
-
-这里举个例子：
-
-"dependencies": {
- "@types/node": "^8.0.33",
-},
-
-这里面的 向上标号^是定义了向后（新）兼容依赖，指如果 types/node的版本是超过8.0.33，并在大版本号（8）上相同，就允许下载最新版本的 types/node库包，例如实际上可能运行npm install时候下载的具体版本是8.0.35。
-
-大多数情况这种向新兼容依赖下载最新库包的时候都没有问题，可是因为npm是开源世界，各库包的版本语义可能并不相同，有的库包开发者并不遵守严格这一原则：相同大版本号的同一个库包，其接口符合兼容要求。这时候用户就很头疼了：在完全相同的一个nodejs的代码库，在不同时间或者不同npm下载源之下，下到的各依赖库包版本可能有所不同，因此其依赖库包行为特征也不同有时候甚至完全不兼容。
-
-因此npm最新的版本就开始提供自动生成package-lock.json功能，为的是让开发者知道只要你保存了源文件，到一个新的机器上、或者新的下载源，只要按照这个package-lock.json所标示的具体版本下载依赖库包，就能确保所有库包与你上次安装的完全一样。
-
-[package-lock.json | 官方文档](https://docs.npmjs.com/files/package-lock.json)
+ - [What is webpack moudule](https://webpack.js.org/concepts/modules/#what-is-a-webpack-module)
+ - [Supported Module Types](https://webpack.js.org/concepts/modules/#supported-module-types)
+ - [Module Methods](https://webpack.js.org/api/module-methods/)
+ - [Module Variables](https://webpack.js.org/api/module-variables/)
 
 
+### 安装 webpack
+在项目中安装
+```
+npm install webpack webpack-cli --save-dev
+```
+是否全局安装？
 
-### semver 语义化版本号变更
+如果电脑上有两个项目，一个 webpack3 打包，一个 webpack4 打包。安装后可能导致你webpack3的项目无法打包，所以一般都是项目内安装。
 
-`^` 是npm默认的版本符号, 当你使用npm install --save时, npm会自动在package中添加^加上版本号. 例如: npm install --save angular会在package.json中添加"angular": "^1.3.15".这个符号会告诉npm可以安装1.3.15或者一个大于它的版本, 但是要是主版本1下的版本.
+### npx
+项目内安装webpack后，直接在终端输入`webpack -v`是不可以的，但是使用`npx webpack -v`就可以。
+```
+$ webpack -v
+> bash: webpack: command not found
+$ npx webpack -v
+> 4.35.0
+```
+这是因为`npx`这个命令可以帮助我们在当前项目的`node_modules`中查找对应的包。
 
-`~` 同样被用来做npm得版本控制, 例如~1.3.15, 代表了npm可以安装1.3.15或者更高的版本, 与^的区别在于, ~的版本只能开始于次版本号1.3. 它们的作用域不同. 你可以通过npm config set save-prefix='~'将~设置为默认符号.
+### 安装制定版本webpack
+`npm install webpack@4.16.5 -D` 在包名后加‘@’再加版本号
+查看某包信息，可以运行 `npm info webpack`
 
-`>`符号主要是用来指定可以安装beta版本.
-
-[semver版本号 | 官方文档](https://semver.org/lang/zh-CN/)
+### [package-lock.json](./package-lock.json.md)

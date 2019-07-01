@@ -1,0 +1,16 @@
+{
+  "name": "demo-1",
+  "version": "1.0.0",
+  "description": "",
+  "private": true,
+  "scripts": {
+  },
+  "author": "yaoyaohu",
+  "license": "ISC",
+  "devDependencies": {
+    "webpack-cli": "^3.3.5"
+  },
+  "dependencies": {
+    "webpack": "^4.35.0"
+  }
+}
