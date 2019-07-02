@@ -3,19 +3,32 @@
  */
 const path = require('path');
 
- module.exports = {
-    mode :'development',
+module.exports = {
+    mode: 'development',
     // 入口
-    entry:{
+    entry: {
         main: "./src/index.js",
     },
     // 当不知道如何打包一个模块（打包的不是JS的时候），就到这里来
     module: {
         rules: [{
-            test: /\.jpg$/,
+            test: /\.(jpg|png|gif)$/,
             use: {
-                loader: 'file-loader'
+                loader: 'file-loader',
+                // option 为配置参数
+                options: {
+                    // 文件名与后缀
+                    name: '[name]_[hash].[ext]',
+                    // 输出目录
+                    outputPath: 'images/'
+                }
             }
+        }, {
+            test: /\.scss$/,
+            // 一种文件多个Loader就使用数组
+            use: [
+                'style-loader', 'css-loader', 'sass-loader','postcss-loader'
+            ]
         }]
     },
     // 出口
