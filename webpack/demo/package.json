@@ -4,10 +4,12 @@
   "description": "",
   "private": true,
   "scripts": {
+    "bundle": "webpack"
   },
   "author": "yaoyaohu",
   "license": "ISC",
   "devDependencies": {
+    "file-loader": "^4.0.0",
     "webpack-cli": "^3.3.5"
   },
   "dependencies": {
