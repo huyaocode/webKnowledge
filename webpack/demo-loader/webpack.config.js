@@ -24,10 +24,24 @@ module.exports = {
                 }
             }
         }, {
+            test: /\.(eot|ttf|svg)$/,
+            use: {
+                loader: 'file-loader'
+            }
+        }, {
             test: /\.scss$/,
             // 一种文件多个Loader就使用数组
             use: [
-                'style-loader', 'css-loader', 'sass-loader','postcss-loader'
+                'style-loader',
+                {
+                    loader: "css-loader",
+                    options: {
+                        importLoaders: 2,
+                        modules: true
+                    }
+                },
+                'sass-loader',
+                'postcss-loader'
             ]
         }]
     },

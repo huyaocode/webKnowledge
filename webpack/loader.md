@@ -102,3 +102,59 @@ module.exports = {
 ```
 
 `autoprefixer`这个插件可以帮我们添加厂商前缀
+
+
+#### importLoaders
+
+在sass文件中又 使用`@import`的方式去引入了其他文件，可能就会导致在打包时直接走 css-loader，而不会去走下面的两个loader
+
+`importLoaders`就是让`@import`方式引入方式的文件也走下面的两个loader
+
+```js
+use: [
+    "style-loader",
+    {
+        loader: "css-loader",
+        options:{ 
+            importLoaders: 2
+        } 
+    }, 
+    "sass-loader",
+    "postcss-loader"
+]
+```
+#### CSS modules
+
+css-loader直接将其打包注入到header中，可能造成CSS的干扰。即一个文件中引入了一个CSS，其他地方都会受到影响
+
+解决方法是配置`modules`：
+```js
+{
+    loader: "css-loader",
+    options:{ 
+        importLoaders: 2,
+        modules: true
+    } 
+},
+```
+引入样式时使用 `style.className` 方式：
+```js
+import style form './style.sass'
+// 添加样式
+
+const img = new Image();
+img.src = girl;
+
+img.classList.add(style.girl)
+```
+
+#### 打包字体
+打包时如果有字体文件的话打包又会报错，因为不认识字体文件。而对字体文件的打包只需要`file-loader`就可以了
+```js
+{
+    test: /\.(eot|ttf|svg)$/,
+    use: {
+        loader: 'file-loader'
+    }
+}
+```
