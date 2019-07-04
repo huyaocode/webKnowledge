@@ -43,3 +43,47 @@ entry: {
 > 
 > The 'mode' option has not been set, webpack will fallback to 'production' for this value. Set 'mode' option to 'development' or 'production' to enable defaults for each environment.
 You can also set it to 'none' to disable any default behavior. Learn more: https://webpack.js.org/configuration/mode/
+
+
+### 多入口
+最后都会讲其写入到html的script标签中
+```js
+entry:{
+    main: 'a/index.js',
+    sub: 'b/main.js'
+}
+// 多个入口是不可打包为同一个JS的，
+output: {
+    filename: '[name].js'
+}
+```
+
+### 为打包出的JS加前缀
+比如静态资源都放在CDN上，那么希望打包出srcipt的src是一个http地址
+可这样做：
+```
+output: {
+    publicPath: 'http://cdn.cn'
+    filename: '[name].js'
+}
+```
+
+### devtool
+devtool就是去配置sourcemap，方便调试，能准确定位到代码错误
+
+ - cheap
+   - 定位到行，不定位到列（提示性能）
+ - module
+   - 把依赖模块中的代码一并做映射
+ - eval
+   - 使用eval形式做sourcemap映射
+ - inline
+   - 行内的映射关系
+
+最好的配置：
+```js
+// 开发时
+devtool: 'cheap-module-eval-source-map',
+// 线上环境：
+devtool: 'cheap-module-source-map'
+```

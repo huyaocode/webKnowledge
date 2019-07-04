@@ -6,7 +6,7 @@
 
 ### [安装](安装.md)
 
-### [webpack配置文件](webpack配置文件.md)
+### [webpack基本配置文件](webpack配置文件.md)
 
 ### [Loader](loader.md)
 
