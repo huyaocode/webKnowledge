@@ -232,7 +232,7 @@ display: -webkit-box;
 - display: none;是非继承属性，子孙节点消失由于元素从渲染树消失造成，通过修改子孙节点属性无法显示；visibility:hidden;是继承属性，子孙节点消失由于继承了 hidden，通过设置 **visibility: visible;可以让子孙节点显式**
 - 修改常规流中元素的 display 通常会造成文档**重排**。修改 visibility 属性只会造成本元素的重绘
 - 读屏器不会读取 display: none;元素内容；会读取 visibility: hidden 元素内容
-
+- 无论是 display:none; 还是 visibility: hidden; 他们都依然可以被 JS 所获取到
 
 
 ### 外边距折叠(collapsing margins)
@@ -254,7 +254,7 @@ display: -webkit-box;
 ### CSS单位
 1. px  绝对单位。传统上一个像素对应于计算机屏幕上的一个点，而对于高清屏则对应更多。
 
-2. %   父元素宽度的比例。
+2. %   父元素**宽度**的比例。
    1. 如果对 html 元素设置 font-size 为百分比值，则是以浏览器默认的字体大小16px为参照计算的（所有浏览器的默认字体大小都为 16px），如62.5%即等于10px（62.5% * 16px = 10px）。
 
 3. em  相对单位。 不同的属性有不同的参照值。
