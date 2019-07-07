@@ -11,10 +11,17 @@
  */
 Function.prototype.myBind = (that, ...args) => {
   const funcThis = this;
-  return function() {
-    const _args = Array.prototype.slice.call(arguments);
+  return function(..._args) {
     return funcThis.apply(that, args.concat(_args));
   }
+}
+
+Function.prototype.mybind = function(ctx) {
+    var _this = this;
+    var args = Array.prototype.slice.call(arguments, 1);
+    return function() {
+        return _this.apply(ctx, args.concat(args, Array.prototype.slice.call(arguments)))
+    }
 }
 ```
 
