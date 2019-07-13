@@ -34,7 +34,7 @@ main部分首先要放在container的最前部分。然后是left,right
 
 4.这时left拉回来了，但会覆盖main内容的左端，要把main内容拉出来，所以在外围container加上 padding:0 220px 0 200px
 
-5.main内容拉回来了，但left也跟着过来了，所以要还原，就对left使用相对定位 left:-200px  同理，right也要相对定位还原 right:-220px
+5.main内容拉回来了，right也跟着过来了，所以要还原，就对left使用相对定位 left:-200px  同理，right也要相对定位还原 right:-220px
 
 6.到这里大概就自适应好了。如果想container高度保持一致可以给left main right都加上min-height:130px
 

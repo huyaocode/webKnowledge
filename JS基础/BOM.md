@@ -95,8 +95,6 @@ Window 对象表示一个浏览器窗口或一个框架。 在客户端 JavaScri
 | - | - |
 | alert()         | 显示带有一段消息和一个确认按钮的警告框。          |
 | blur()          | 把键盘焦点从顶层窗口移开。                        |
-| clearInterval() | 取消由 setInterval() 设置的 timeout。             |
-| clearTimeout()  | 取消由 setTimeout() 方法设置的 timeout。close() 关闭浏览器窗口|
 | confirm()       | 显示带有一段消息以及确认按钮和取消按钮的对话框。  |
 | createPopup()   | 创建一个弹出窗口。 只有 ie 支持（不包括 ie11）    |
 | focus()         | 把键盘焦点给予一个窗口。                          |
@@ -111,7 +109,8 @@ Window 对象表示一个浏览器窗口或一个框架。 在客户端 JavaScri
 | scrollTo()      | 把内容滚动到指定的坐标。                          |
 | setInterval()   | 按照指定的周期（以毫秒计） 来调用函数或计算表达式。   |
 | setTimeout()    | 在指定的毫秒数后调用函数或计算表达式。            |
-
+| clearInterval() | 取消由 setInterval() 设置的 timeout。             |
+| clearTimeout()  | 取消由 setTimeout() 方法设置的 timeout。close() 关闭浏览器窗口|
 
 
 ### Navigator 对象
