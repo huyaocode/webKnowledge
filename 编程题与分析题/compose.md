@@ -1,3 +1,13 @@
+## 函数式编程 compose
+
+实现以下功能：
+```js
+compose([a, b, c])('参数')
+=>
+a( b( c('参数') ) )
+```
+
+```js
 function compose(funcs) {
   var len = funcs.length;
   var index = len - 1;
@@ -17,7 +27,10 @@ function compose(funcs) {
     return result;
   }
 }
+```
 
+测试：
+```js
 function a (str) {
   return `a ${str}`
 }
@@ -29,5 +42,5 @@ function c (str) {
 }
 
 const abc = compose([a, b, c])
-
-console.log(abc('asdf'))
+abc('huyao')
+```
