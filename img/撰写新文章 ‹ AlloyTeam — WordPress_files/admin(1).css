@@ -1,0 +1,301 @@
+div.misc-pub-section.tiny-compress-images {
+	border-top: 1px solid #e1e1e1;
+	padding-bottom: 16px;
+}
+
+/* Settings */
+div.tiny-account-status {
+	box-sizing: border-box;
+	display: table-cell;
+	width: 500px;
+	padding: 22px 28px;
+	border: 1px solid #e1e1e1;
+	background-color: white;
+}
+
+div.tiny-account-status div.status {
+	box-sizing: border-box;
+	padding-left: 26px;
+	position: relative;
+}
+
+div.tiny-account-status div.status:before {
+	box-sizing: border-box;
+	position: absolute;
+	width: 20px;
+	height: 20px;
+	font-size: 28px;
+	font-family: dashicons;
+	font-weight: 400;
+	font-style: normal;
+}
+
+div.tiny-account-status div.status-failure:before {
+	left: -6px;
+	top: -6px;
+	color: #d54e21;
+	content: "\f158";
+}
+
+div.tiny-account-status div.status-success:before {
+	left: -6px;
+	top: -6px;
+	color: #30d030;
+	content: "\f147";
+}
+
+div.tiny-account-status div.status-pending:before {
+	left: -6px;
+	top: -4px;
+	color: #0086ba;
+	font-size: 24px;
+	content: "\f466";
+}
+
+div.tiny-account-status div.status-loading:before {
+	left: -2px;
+	top: 0;
+	background: url(../images/spinner.gif) no-repeat center;
+	background-size: 20px 20px;
+	content: "";
+}
+
+@media (-webkit-min-device-pixel-ratio: 1.25), (min-resolution: 120dpi) {
+	div.tiny-account-status div.status-loading:before {
+		background-image: url("../images/spinner-2x.gif");
+	}
+}
+
+div.tiny-account-status h4 {
+	margin-top: 0;
+	line-height: 1.5;
+}
+
+div.tiny-account-status p {
+	margin-top: 0;
+	margin-bottom: 4px;
+}
+
+div.tiny-account-status button + p {
+	margin-top: 8px;
+}
+
+div.tiny-account-status p:last-child {
+	margin-bottom: 0;
+}
+
+div.tiny-account-status p.introduction {
+	margin-bottom: 12px;
+}
+
+div.tiny-account-status p.status {
+	font-weight: bold;
+}
+
+div.tiny-account-status.wide {
+	width: auto;
+	max-width: 700px;
+}
+
+div.tiny-account-status div.failure input {
+	border: 1px solid #d54e21;
+}
+
+div.tiny-account-status div.failure p.message {
+	color: #d54e21;
+}
+
+div.tiny-account-status div.update {
+	width: 380px;
+}
+
+div.tiny-account-status.wide div.create {
+	box-sizing: border-box;
+	display: table-cell;
+	width: 50%;
+	padding-right: 30px;
+	border-right: 1px solid #e5e5e5;
+}
+
+div.tiny-account-status.wide div.update {
+	box-sizing: border-box;
+	display: table-cell;
+	width: 50%;
+	padding-left: 29px;
+}
+
+@media screen and (max-width: 600px) {
+	div.tiny-account-status.wide div.create {
+		display: block;
+		width: auto;
+		padding-right: 0;
+		padding-bottom: 20px;
+		border-right: 0;
+		border-bottom: 1px solid #e5e5e5;
+	}
+
+	div.tiny-account-status.wide div.update {
+		display: block;
+		width: auto;
+		padding-top: 29px;
+		padding-left: 0;
+	}
+}
+
+div.tiny-account-status.wide div.create input, div.tiny-account-status.wide div.update input {
+	width: 100%;
+	margin-bottom: 8px;
+}
+
+div.tiny-account-status.wide div.create button, div.tiny-account-status.wide div.update button {
+	width: 100%;
+	margin-top: 4px;
+	margin-bottom: 4px;
+}
+
+div.tiny-account-status.wide div.create button.loading, div.tiny-account-status.wide div.update button.loading {
+	background-image: url(../images/button-spinner.gif) !important;
+	background-size: 16px 16px !important;
+	background-position: 95% 50% !important;
+	background-repeat: no-repeat !important;
+}
+
+@media (-webkit-min-device-pixel-ratio: 1.25), (min-resolution: 120dpi) {
+	div.tiny-account-status.wide div.create button.loading, div.tiny-account-status.wide div.update button.loading {
+		background-image: url("../images/button-spinner-2x.gif") !important;
+	}
+}
+
+p.tiny-resize-resolution {
+	margin-left: 24px;
+}
+
+p.tiny-resize-resolution input {
+	margin-right: 6px;
+}
+
+input[type=number][name*="tinypng_resize_original"] {
+	width: 65px;
+}
+
+/* Media library */
+.tiny-compress-images .spinner.hidden {
+	display: none;
+	visibility: hidden;
+	float: none;
+	margin-top: 0;
+}
+
+.tiny-compress-images div.spinner {
+	display: inline-block;
+	visibility: visible;
+	float: right;
+	margin-top: 4px;
+}
+
+.tiny-compress-images span.spinner {
+	visibility: visible;
+	float: none;
+	margin: 0;
+}
+
+.tiny-compress-images span.icon {
+	display: inline-block;
+	margin-left: -4px;
+	padding-right: 4px;
+}
+
+.tiny-compress-images span.dashicons-before::before {
+	margin-left: -2px;
+	font-size: 23px;
+}
+
+.tiny-compress-images .details-container {
+	overflow: auto;
+}
+
+.tiny-compress-images .details-container button {
+	display: block;
+	margin-left: 20px;
+	margin-bottom: 5px;
+}
+
+.tiny-compress-images .details-container span.icon {
+	position: absolute;
+}
+
+.tiny-compress-images .details-container .message {
+	display: inline-block;
+	margin-left: 20px;
+}
+
+.tiny-compress-images .details-container a.message {
+	margin-bottom: 5px;
+}
+
+.tiny-compress-images span.success {
+	color: #30d030;
+}
+
+.tiny-compress-images span.warning {
+	color: #f0ad4e;
+}
+
+.tiny-compress-images span.error {
+	color: #d54e21;
+}
+
+.tiny-compress-images span.alert {
+	color: gray;
+}
+
+#tiny-compress-status .spinner,
+#tiny-compress-savings .spinner {
+	visibility: visible;
+	display: inline;
+	float: left;
+	width: 20px;
+	height: 20px;
+	margin: 0;
+}
+
+.tiny-compression-details {
+	padding: 10px;
+}
+
+.tiny-compression-details table {
+	width: 100%;
+	border: 1px solid #e5e5e5;
+	border-collapse: collapse;
+	white-space: nowrap;
+}
+
+.tiny-compression-details table tr.even {
+	background-color: #f9f9f9;
+}
+
+.tiny-compression-details table td {
+	padding: 6px 10px;
+}
+
+.tiny-compression-details table th {
+	padding: 8px 10px;
+	border-bottom: 1px solid #e5e5e5;
+	font-size: 14px;
+}
+
+.tiny-compression-details table tfoot {
+	border-top: 1px solid #e5e5e5;
+}
+
+.tiny-compression-details table tfoot td {
+	padding: 8px 10px;
+}
+
+.tiny-compress-images .modal {
+	display: none;
+}
+
+.tiny-compress-images h4 {
+	margin: 0.5em 0;
+}

@@ -1,0 +1,330 @@
+/* @group ReModal */
+
+.remodal .status button {
+	font-weight: 300;
+	background-color: #656e78;
+	border: none;
+	color: #fff;
+	-webkit-box-shadow: none;
+	-moz-box-shadow: none;
+	box-shadow: none;
+	font: 12px lato, 'open sans', sans-serif;
+	height: auto;
+	padding: 6px 18px;
+	border-radius: 2px;
+	cursor: pointer;
+}
+
+.remodal .status button.disabled {
+	opacity: .6;
+}
+
+.remodal div button {
+	margin-top: 30px;
+	cursor: pointer;
+}
+
+.remodal h1 {
+	font-weight: 300;
+	text-transform: uppercase;
+	margin: 0;
+	padding: 20px 0 10px;
+}
+
+.remodal p {
+	padding-top: 5px;
+	margin-bottom: 0;
+}
+
+.remodal-confirm {
+	background-color: #8ec159;
+	border: 0;
+	color: #fff;
+	padding: 6px 28px;
+	border-radius: 2px;
+}
+
+html.remodal-is-locked {
+	overflow: hidden;
+}
+
+.remodal,
+[data-remodal-id] {
+	display: none;
+}
+
+.remodal-overlay {
+	position: fixed;
+	z-index: 9999;
+	top: -5000px;
+	right: -5000px;
+	bottom: -5000px;
+	left: -5000px;
+	display: none;
+}
+
+.remodal-wrapper {
+	position: fixed;
+	z-index: 10000;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	display: none;
+	overflow: auto;
+	text-align: center;
+	-webkit-overflow-scrolling: touch;
+}
+
+.remodal-wrapper:after {
+	display: inline-block;
+	height: 100%;
+	margin-left: -0.05em;
+	content: '';
+}
+
+/* Fix iPad, iPhone glitches */
+
+.remodal-overlay,
+.remodal-wrapper {
+	-webkit-backface-visibility: hidden;
+	backface-visibility: hidden;
+}
+
+/* Necessary styles of the modal dialog */
+
+.remodal {
+	font-family: lato, 'open sans', sans-serif;
+	position: relative;
+}
+
+.remodal-is-initialized {
+	display: inline-block;
+}
+
+.remodal-bg.remodal-is-opening,
+.remodal-bg.remodal-is-opened {
+	-webkit-filter: blur(3px);
+	filter: blur(3px);
+}
+
+/* Default theme styles of the overlay */
+
+.remodal-overlay {
+	background: rgba(67,74,84,0.8);
+}
+
+.remodal-overlay.remodal-is-opening,
+.remodal-overlay.remodal-is-closing {
+	-webkit-animation-fill-mode: forwards;
+	animation-fill-mode: forwards;
+}
+
+.remodal-overlay.remodal-is-opening {
+	-webkit-animation: remodal-overlay-opening-keyframes 0.33s;
+	animation: remodal-overlay-opening-keyframes 0.33s;
+}
+
+.remodal-overlay.remodal-is-closing {
+	-webkit-animation: remodal-overlay-closing-keyframes 0.33s;
+	animation: remodal-overlay-closing-keyframes 0.33s;
+}
+
+/* Default theme styles of the wrapper */
+
+.remodal-wrapper {
+	padding: 10px 10px 0;
+}
+
+/* Default theme styles of the modal dialog */
+
+.remodal {
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+	width: 100%;
+	margin-bottom: 10px;
+	padding: 35px;
+	-webkit-transform: translate3d(0, 0, 0);
+	transform: translate3d(0, 0, 0);
+	color: #656e78;
+	background: #fff;
+}
+
+.remodal.remodal-is-opening,
+.remodal.remodal-is-closing {
+	-webkit-animation-fill-mode: forwards;
+	animation-fill-mode: forwards;
+}
+
+.remodal.remodal-is-opening {
+	-webkit-animation: remodal-opening-keyframes 0.33s;
+	animation: remodal-opening-keyframes 0.33s;
+}
+
+.remodal.remodal-is-closing {
+	-webkit-animation: remodal-closing-keyframes 0.33s;
+	animation: remodal-closing-keyframes 0.33s;
+}
+
+/* Vertical align of the modal dialog */
+
+.remodal,
+.remodal-wrapper:after {
+	vertical-align: middle;
+}
+
+/* Close button */
+
+.remodal-close {
+	position: absolute;
+	top: 0;
+	left: 0;
+	display: block;
+	overflow: visible;
+	width: 40px;
+	height: 40px;
+	margin: 0;
+	padding: 0;
+	cursor: pointer;
+	-webkit-transition: 0.33s;
+	transition: 0.33s;
+	text-decoration: none;
+	color: #95979c;
+	border: 0;
+	outline: 0;
+	background: transparent;
+}
+
+.remodal-close:hover,
+.remodal-close:focus {
+	color: #2b2e38;
+	-webkit-transform: rotate(-90deg);
+}
+
+.remodal-close:before {
+	font-size: 32px;
+	line-height: 40px;
+	position: absolute;
+	top: 0;
+	left: 3px;
+	display: block;
+	width: 35px;
+	content: "\00d7";
+	text-align: center;
+}
+
+/* Keyframes
+   ========================================================================== */
+
+@-webkit-keyframes remodal-opening-keyframes {
+	from {
+    -webkit-transform: scale(1.05);
+	transform: scale(1.05);
+	opacity: 0;
+}
+
+to {
+	-webkit-transform: none;
+	transform: none;
+	opacity: 1;
+}
+
+}
+
+@keyframes remodal-opening-keyframes {
+	from {
+    -webkit-transform: scale(1.05);
+	transform: scale(1.05);
+	opacity: 0;
+}
+
+to {
+	-webkit-transform: none;
+	transform: none;
+	opacity: 1;
+}
+
+}
+
+@-webkit-keyframes remodal-closing-keyframes {
+	from {
+    -webkit-transform: scale(1);
+	transform: scale(1);
+	opacity: 1;
+}
+
+to {
+	-webkit-transform: scale(0.95);
+	transform: scale(0.95);
+	opacity: 0;
+}
+
+}
+
+@keyframes remodal-closing-keyframes {
+	from {
+    -webkit-transform: scale(1);
+	transform: scale(1);
+	opacity: 1;
+}
+
+to {
+	-webkit-transform: scale(0.95);
+	transform: scale(0.95);
+	opacity: 0;
+}
+
+}
+
+@-webkit-keyframes remodal-overlay-opening-keyframes {
+	from {
+    opacity: 0;
+}
+
+to {
+	opacity: 1;
+}
+
+}
+
+@keyframes remodal-overlay-opening-keyframes {
+	from {
+    opacity: 0;
+}
+
+to {
+	opacity: 1;
+}
+
+}
+
+@-webkit-keyframes remodal-overlay-closing-keyframes {
+	from {
+    opacity: 1;
+}
+
+to {
+	opacity: 0;
+}
+
+}
+
+@keyframes remodal-overlay-closing-keyframes {
+	from {
+    opacity: 1;
+}
+
+to {
+	opacity: 0;
+}
+
+}
+
+@media only screen and (min-width: 641px) {
+	.remodal {
+    max-width: 700px;
+}
+
+}
+
+/* @end */
