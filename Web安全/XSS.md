@@ -179,7 +179,9 @@ Content-Security-Policy: child-src 'none'
 [CSP](https://developer.mozilla.org/zh-CN/docs/Web/HTTP/CSP) ( Content Security Policy )
 
 
-### XSS注入方法
+## XSS注入方法
+参考链接：https://xz.aliyun.com/t/4067
+
 ### `<scirpt>`
 
     <scirpt>alert("xss");</script>
