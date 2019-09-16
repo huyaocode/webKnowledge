@@ -61,7 +61,7 @@ const ajax = (obj) => {
 
         // 发送请求
         if(method === 'POST') {
-            xhr.open('POST', obj.url, ture);
+            xhr.open('POST', obj.url, true);
             xhr.responseType = 'json';
             xhr.setRequestHeader("Accept", "application/json");
             xhr.send(JSON.parse(obj.data));
