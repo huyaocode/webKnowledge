@@ -14,7 +14,7 @@ function compose(funcs) {
 
   for(let i = 0; i < len; i ++) {
     if(typeof funcs[i] !== 'function') {
-      throw new TypeError('Expected a function');
+      throw new TypeError('Expected function');
     }
   }
 
