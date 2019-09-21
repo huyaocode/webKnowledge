@@ -32,23 +32,6 @@ eval 的功能是把对应的字符串解析成 JS 代码并运行
 
 
 
-### ['1', '2', '3'].map(parseInt) 答案是多少？
-
-答案 [1, NaN, NaN]
-
-map会给函数传递3个参数： (elem, index, arry)
-
-parseInt接收两个参数(sting, radix)，其中radix代表进制。省略 radix 或 radix = 0，则数字将以十进制解析
-
-因此，map 遍历 ["1", "2", "3"]，相应 parseInt 接收参数如下
-
-```js
-parseInt('1', 0);  // 1
-parseInt('2', 1);  // NaN
-parseInt('3', 2);  // NaN
-```
-
-
 ### [严格模式的限制](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Strict_mode/Transitioning_to_strict_mode)
  
  - 变量必须声明后再使用
@@ -67,30 +50,6 @@ parseInt('3', 2);  // NaN
  - 不能使用 fn.caller 和 fn.arguments 获取函数调用的堆栈
  - 增加了保留字（比如 protected、static 和 interface）
 
-
-### Ajax
-Asynchronous Javascript And XML 异步传输+js+xml
-
- - 创建 XMLHttpRequest 对象,也就是创建一个异步调用对象
- - 建一个新的 HTTP 请求,并指定该 HTTP 请求的方法、URL 及验证信息
- - 设置响应 HTTP 请求状态变化的函数
- - 发送 HTTP 请求
- - 获取异步调用返回的数据
-
-```js
-function ajax(url, handler){
-  var xhr;
-  xhr = new XMLHttpRequest();
-
-  xhr.onreadystatechange = function() {
-    if(xhr.readyState == 4 && xhr.status == 200) {
-      handler(xhr.responseXML);
-    }
-  }
-  xhr.open('GET', url, true);
-  xhr.send();
-}
-```
 
 
 ### Javascript 垃圾回收方法

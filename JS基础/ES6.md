@@ -108,9 +108,12 @@ console.log(sum)
 
 ### Es6中箭头函数与普通函数的区别？
  - 普通function的声明在变量提升中是最高的，箭头函数没有函数提升
- - 箭头函数没有属于自己的this，arguments
+ - 箭头函数没有属于自己的`this`，`arguments`
  - 箭头函数不能作为构造函数，不能被new，没有property
- - call和apply方法只有参数，没有作用域
+ - 不可以使用 yield 命令，因此箭头函数不能用作 Generator 函数
+ - 不可以使用 new 命令，因为：
+   - 没有自己的 this，无法调用 call，apply
+   - 没有 prototype 属性 ，而 new 命令在执行时需要将构造函数的 prototype 赋值给新的对象的 `__proto__`
 
 
 
@@ -209,6 +212,48 @@ console.log('1', a)
 
 上述解释中提到了 await 内部实现了 generator，其实 **await 就是 generator 加上 Promise 的语法糖，且内部实现了自动执行 generator**。
 
+
+### 代码分析题
+```js
+function wait() {
+  return new Promise(resolve =>
+  	setTimeout(resolve,  1000)
+  )
+}
+
+async function main() {
+  console.time();
+  const x = wait();
+  const y = wait();
+  const z = wait();
+  await x;
+  await y;
+  await z;
+  console.timeEnd();
+}
+main();
+```
+答案： 输出耗时： 1秒多一点点。
+原因： 3个wait函数在赋值的时候就已经开始执行了。
+
+稍微改造一下就可以得到3 * 1000 ms以上的结果
+```js
+function wait () {
+  return new Promise(
+    resolve => setTimeout(resolve,  1000)
+  )
+}
+
+async function main () {
+  console.time()
+  const x = await wait()
+  const y = await wait()
+  const z = await wait()
+  console.timeEnd()
+}
+
+main()
+```
 
 
 ### Generator 生成器

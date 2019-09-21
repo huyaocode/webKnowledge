@@ -61,6 +61,16 @@ BFC布局规则：
 5. 计算BFC的高度，浮动元素也参与计算
 
 
+### BFC、IFC、GFC 和 FFC
+ - BFC（Block formatting contexts）：块级格式上下文
+
+ - IFC（Inline formatting contexts）：内联格式上下文
+
+ - GFC（GrideLayout formatting contexts）：网格布局格式化上下文
+
+ - FFC（Flex formatting contexts）:自适应格式上下文
+
+
 
 ### 非布局样式
  - 字体、字重、颜色、大小、行高
@@ -223,16 +233,29 @@ display: -webkit-box;
 
 
 ### display: none; 与 visibility: hidden; 的区别
+结构：
+ - display:none
+   - 会让元素完全从渲染树中消失，渲染的时候不占据任何空间, 不能点击，
+ - visibility: hidden
+   - 不会让元素从渲染树消失，渲染元素继续占据空间，只是内容不可见，不能点击 
+ - opacity: 0
+   - 不会让元素从渲染树消失，渲染元素继续占据空间，只是内容不可见，可以点击
 
-相同： 它们都能让元素不可见
+继承
+ - display: none和opacity: 0
+   - 非继承属性，子孙节点消失由于元素从渲染树消失造成，通过修改子孙节点属性无法显示。
+ - visibility: hidden
+   - 继承属性，子孙节点消失由于继承了hidden，通过设置visibility: visible;可以让子孙节点显式。
 
-区别：
+性能
+   - display:none
+     - 修改元素会造成文档回流。读屏器不会读取display: none元素内容，性能消耗较大
+   - visibility:hidden
+     - 修改元素只会造成本元素的重绘,性能消耗较少。读屏器读取visibility: hidden元素内容
+   - opacity: 0
+     - 修改元素会造成重绘，性能消耗较少
 
-- display:none;会让元素完全**从渲染树中消失**，渲染的时候不占据任何空间；visibility: hidden;不会让元素从渲染树消失，渲染时元素继续占据空间，只是内容不可见
-- display: none;是非继承属性，子孙节点消失由于元素从渲染树消失造成，通过修改子孙节点属性无法显示；visibility:hidden;是继承属性，子孙节点消失由于继承了 hidden，通过设置 **visibility: visible;可以让子孙节点显式**
-- 修改常规流中元素的 display 通常会造成文档**重排**。修改 visibility 属性只会造成本元素的重绘
-- 读屏器不会读取 display: none;元素内容；会读取 visibility: hidden 元素内容
-- 无论是 display:none; 还是 visibility: hidden; 他们都依然可以被 JS 所获取到
+相同点： 它们都能让元素不可见、他们都依然可以被 JS 所获取到
 
 
 ### 外边距折叠(collapsing margins)
