@@ -167,3 +167,24 @@ interface Alarm {
     alert(s: string, n: number): string;
 }
 ```
+
+
+### is关键字
+可以用来判断一个变量属于某个接口|类型
+
+例如，此时有一个接口A
+```js
+interface IAProps {
+  name: string
+  js: any
+}
+```
+现在需要判断一个变量是否为该类型
+
+定义规则：
+```js
+// 属于接口A
+let isAProps = (props: any): props is IAProps =>
+  typeof (props as IAProps)['js'] !== 'undefined'
+```
+若isAProps(props)返回true则断定参数props为IAProps类型
