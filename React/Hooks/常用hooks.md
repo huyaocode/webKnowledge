@@ -116,6 +116,7 @@ function App() {
 ```
 
 ### useMemo
+useCallback和useMemo的参数跟useEffect一致，他们之间最大的区别有是useEffect会用于处理副作用，这两个hooks不能。
 
 使用useMemo方法可以避免无用方法的调用,
 ```jsx
@@ -126,4 +127,77 @@ function App() {
 const otherName = useMemo(() => {
   changeName(name)
 }, [name]);
+```
+
+### useCallback
+如果usememo返回的是一个函数，那么可以使用useCallback替代
+
+useCallback解决的是传入子组件参数过度变化导致子组件过度渲染的问题
+```js
+// 这两个是等价的
+useMemo(() => fn, [])
+useCallback(fn, [])
+```
+每一次函数组件重新执行一次，这两个内部函数都会重复创建。然而实际上，他们都是一样的。 所以很多传递给子组件的函数直接使用useCallback包裹起来，会提升性能
+
+
+
+### Ref Hooks
+
+1. 使用Eef保存变量：
+因为函数组件每一次都会重新执行，保存一些每一次都需要的使用的变量就需要 Ref Hook
+
+定时器，Ref Hooks的最佳实践
+```jsx
+function App() {
+  const [count, setCount] = useState(1);
+  const timer = useRef();
+
+  useEffect(() => {
+    timer.current = setInterval(() => {
+      setCount(count => count+1)
+    }, 1000)
+  }, [])
+
+  useEffect(() => {
+    if(count >= 10) {
+      clearInterval(timer.current)
+    }
+  })
+
+  return (
+    <>
+      <h1>count: {count}</h1> 
+    </>
+  );
+}
+```
+
+2. 使用 Ref 保存上一个状态的值
+```JSX
+function Counter() {
+  const [count, setCount] = useState(0);
+
+  const prevCountRef = useRef(-1);
+  useEffect(() => {
+    prevCountRef.current = count;
+  });
+
+  const prevCount = prevCountRef.current;
+
+  return (
+    <>
+      <button
+        onClick={() => {
+          setCount(count => count + 1);
+        }}
+      >
+        add{' '}
+      </button>
+      <h1>
+        Now: {count}, before: {prevCount}
+      </h1>
+    </>
+  );
+}
 ```
