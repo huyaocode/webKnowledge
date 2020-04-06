@@ -15,37 +15,7 @@ Function.prototype.myBind = (that, ...args) => {
     return funcThis.apply(that, args.concat(_args));
   }
 }
-
-Function.prototype.mybind = function(ctx) {
-    var _this = this;
-    var args = Array.prototype.slice.call(arguments, 1);
-    return function() {
-        return _this.apply(ctx, args.concat(args, Array.prototype.slice.call(arguments)))
-    }
-}
 ```
-
-```js
-/**
- * 自封装bind方法
- * @param  {对象} target [被绑定的this对象， 之后的arguments就是被绑定传入参数]
- * @return {[function]}  [返回一个新函数，这个函数就是被绑定了this的新函数]
- */
-Function.prototype.myBind = function (target){
-	target = target || window;
-	var self = this;
-	var args = [].slice.call(arguments, 1);
-	var temp = function(){};
-	var F = function() {
-		var _args = [].slice.call(arguments, 0);
-		return self.apply(this instanceof temp ? this: target, args.concat(_args));
-	}
-	temp.prototype = this.prototype;    //维护原型关系
-	F.prototype = new temp();
-	return F;
-}
-```
-
 
 ### 自封装一个apply
 
