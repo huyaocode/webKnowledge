@@ -1,5 +1,7 @@
 # 前端基础知识总结
 
+github链接：[webKnowledge](https://github.com/huyaocode/webKnowledge)
+
 我是2020届的前端，这是我平时收集整理的知识点，查漏补缺，扎实基础，更像是一个文档。
 
 **所有内容都在文件夹里，要点进去看。Readme里面只挂内推**
