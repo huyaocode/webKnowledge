@@ -2,7 +2,7 @@
 
 github链接：[webKnowledge](https://github.com/huyaocode/webKnowledge)
 
-我是2020届的前端，这是我平时收集整理的知识点，查漏补缺，扎实基础，更像是一个文档。
+这是我平时收集整理的知识点，查漏补缺，扎实基础，更像是一个文档。
 
 **所有内容都在文件夹里，要点进去看。Readme里面只挂内推**
 
@@ -11,7 +11,7 @@ github链接：[webKnowledge](https://github.com/huyaocode/webKnowledge)
 有疑问的同学也可以加我**微信**： purple12369
 
 ## 学习群
-建了一个学习群，在群里你只可以做3件事：
+建了一个学习群，在群里你可以：
  - 分享优质文章、面经
  - 学习打卡（相互鼓励）
  - 前端问题探讨
