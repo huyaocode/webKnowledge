@@ -80,7 +80,7 @@ DOM标准规定事件流包括三个阶段：
 
 但使用不当会造成事件在不应该触发时触发
 ```js
-ulEl.addEventListener('click', function(e){
+ulEl.addEventListener('click', function(event){
   var target = event.target || event.srcElement;
   if(target && target.nodeName.toUpperCase() === "LI"){
     console.log(target.innerHTML);
