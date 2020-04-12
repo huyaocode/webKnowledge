@@ -17,7 +17,7 @@ github链接：[webKnowledge](https://github.com/huyaocode/webKnowledge)
  - 前端问题探讨
  - **禁止闲聊**（大家默默努力即可）
 
-![二维码](img/QRcode.png)
+![二维码](img/QRcode-2.png)
 
 ## 内推
 我现在选择字节跳动啦，欢迎大家投递简历。每一份简历我都会认真的跟到底的。而且我在天府成都工作哦，成都的伙伴们找我是最好的啦。北京也有我的好哥们，核心广告部门。 总之，欢迎投递～
