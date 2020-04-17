@@ -77,6 +77,8 @@ HTTP是Hyper Text Transfer Protocol（超文本传输协议）的缩写。它是
 
 #### 2XX 成功
  - **200** OK
+ - 201 Created 通常指 POST请求的结果，已在服务器上成功创建了一个或多个新资源。
+ - 202 Accepted 表示已接受处理请求，但处理尚未完成，表异步。
  - 204 No content，表示请求成功，但响应报文不含实体的主体部分
  - 205 Reset Content，表示请求成功，但响应报文不含实体的主体部分，但是与 204 响应不同在于要求请求方重置内容
  - **206** Partial Content，进行范围请求
