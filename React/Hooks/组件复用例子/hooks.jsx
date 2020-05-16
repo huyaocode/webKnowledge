@@ -2,7 +2,7 @@ function useSize() {
   const [size, setSize] = useState([window.innerWidth, window.innerHeight]);
 
   useEffect(() => {
-    document.title = size.join('x');
+    document.title = size.join("x");
   });
 
   const onResize = () => {
@@ -10,9 +10,9 @@ function useSize() {
   };
 
   useEffect(() => {
-    window.addEventListener('resize', onResize);
+    window.addEventListener("resize", onResize);
     return () => {
-      window.removeEventListener('resize', onResize);
+      window.removeEventListener("resize", onResize);
     };
   });
   return size;

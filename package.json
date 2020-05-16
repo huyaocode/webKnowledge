@@ -4,7 +4,7 @@
   "description": "github 链接：[webKnowledge](https://github.com/huyaocode/webKnowledge)",
   "main": "index.js",
   "scripts": {
-    "precommit": "pretty-quick --staged"
+    "pretter": "prettier --write ."
   },
   "repository": {
     "type": "git",
@@ -19,7 +19,21 @@
   "homepage": "https://github.com/huyaocode/webKnowledge#readme",
   "devDependencies": {
     "husky": "^4.2.5",
-    "prettier": "2.0.5",
-    "pretty-quick": "^2.0.1"
+    "prettier": "2.0.5"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.*": [
+      "prettier --write",
+      "git add"
+    ]
+  },
+  "dependencies": {
+    "husky": "^4.2.5",
+    "lint-staged": "^10.2.2"
   }
 }

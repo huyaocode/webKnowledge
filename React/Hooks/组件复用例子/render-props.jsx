@@ -4,44 +4,42 @@
 
 class Resizeable extends Component {
   state = {
-    size: [window.innerWidth, window.innerHeight]
+    size: [window.innerWidth, window.innerHeight],
   };
 
   onResize = () => {
-    this.setState({ 
-      size: [window.innerWidth, window.innerHeight] 
+    this.setState({
+      size: [window.innerWidth, window.innerHeight],
     });
   };
 
   componentDidMount() {
-    window.addEventListener('resize', this.onResize);
-    document.title = this.state.size.join('x');
+    window.addEventListener("resize", this.onResize);
+    document.title = this.state.size.join("x");
   }
 
   componentWillUnmount() {
-    window.removeEventListener('resize', this.onResize);
+    window.removeEventListener("resize", this.onResize);
   }
 
   componentDidUpdate() {
-    document.title = this.state.size.join('x');
+    document.title = this.state.size.join("x");
   }
 
   render() {
-    return this.props.render(this.state.size)
+    return this.props.render(this.state.size);
   }
 }
 
-
 class Foo extends Component {
   render() {
-    const [width, height] = this.props.size ;
+    const [width, height] = this.props.size;
     return (
       <div>
         {width} x {height}
       </div>
-    )
-  } 
+    );
+  }
 }
 
-
-<Resizeable render={size => <Foo size={size} />} />
+<Resizeable render={(size) => <Foo size={size} />} />;

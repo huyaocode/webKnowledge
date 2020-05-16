@@ -1,7 +1,7 @@
-### v-bind和v-model的区别
+### v-bind 和 v-model 的区别
 
-1.v-bind用来绑定数据和属性以及表达式，缩写为'：'
-2.v-model使用在表单中，实现双向数据绑定的，在表单元素外使用不起作用
+1.v-bind 用来绑定数据和属性以及表达式，缩写为'：'
+2.v-model 使用在表单中，实现双向数据绑定的，在表单元素外使用不起作用
 
 ### 什么是 mvvm？
 
@@ -27,7 +27,7 @@ mvc 和 mvvm 其实区别并不大。都是一种设计思想。主要就是 mvc
 答：总共分为 8 个阶段创建前/后，载入前/后，更新前/后，销毁前/后。
 
 - 创建前/后： 在 beforeCreate 阶段，vue 实例的挂载元素 el 还没有。
-- 载入前/后：在 beforeMount 阶段，vue 实例的$el 和 data 都初始化了，但还是挂载之前为虚拟的 dom 节点，data.message 还未替换。在 mounted 阶段，vue 实例挂载完成，data.message 成功渲染。
+- 载入前/后：在 beforeMount 阶段，vue 实例的\$el 和 data 都初始化了，但还是挂载之前为虚拟的 dom 节点，data.message 还未替换。在 mounted 阶段，vue 实例挂载完成，data.message 成功渲染。
 - 更新前/后：当 data 变化时，会触发 beforeUpdate 和 updated 方法。
 - 销毁前/后：在执行 destroy 方法后，对 data 的改变不会再触发周期函数，说明此时 vue 实例已经解除了事件监听以及和 dom 的绑定，但是 dom 结构依然存在
 
@@ -38,37 +38,36 @@ mvc 和 mvvm 其实区别并不大。都是一种设计思想。主要就是 mvc
 ```html
 //父组件通过标签上面定义传值
 <template>
-    <Main :obj="data"></Main>
+  <main :obj="data"></main>
 </template>
 <script>
-    //引入子组件
-    import Main form "./main"
+  //引入子组件
+  import Main form "./main"
 
-    exprot default{
-        name:"parent",
-        data(){
-            return {
-                data:"我要向子组件传递数据"
-            }
-        },
-        //初始化组件
-        components:{
-            Main
-        }
-    }
+  exprot default{
+      name:"parent",
+      data(){
+          return {
+              data:"我要向子组件传递数据"
+          }
+      },
+      //初始化组件
+      components:{
+          Main
+      }
+  }
 </script>
-
 
 //子组件通过props方法接受数据
 <template>
-    <div>{{data}}</div>
+  <div>{{data}}</div>
 </template>
 <script>
-    exprot default{
-        name:"son",
-        //接受父组件传值
-        props:["data"]
-    }
+  exprot default{
+      name:"son",
+      //接受父组件传值
+      props:["data"]
+  }
 </script>
 ```
 
@@ -77,33 +76,32 @@ mvc 和 mvvm 其实区别并不大。都是一种设计思想。主要就是 mvc
 ```html
 //子组件通过$emit方法传递参数
 <template>
-   <div v-on:click="events"></div>
+  <div v-on:click="events"></div>
 </template>
 <script>
-    //引入子组件
-    import Main form "./main"
+  //引入子组件
+  import Main form "./main"
 
-    exprot default{
-        methods:{
-            events:function(){
+  exprot default{
+      methods:{
+          events:function(){
 
-            }
-        }
-    }
+          }
+      }
+  }
 </script>
-
 
 //
 
 <template>
-    <div>{{data}}</div>
+  <div>{{data}}</div>
 </template>
 <script>
-    exprot default{
-        name:"son",
-        //接受父组件传值
-        props:["data"]
-    }
+  exprot default{
+      name:"son",
+      //接受父组件传值
+      props:["data"]
+  }
 </script>
 ```
 
@@ -118,43 +116,40 @@ index.html，只有一个路由出口
 
 ```html
 <div id="app">
-    <!-- router-view 路由出口, 路由匹配到的组件将渲染在这里 -->
-    <router-view></router-view>
+  <!-- router-view 路由出口, 路由匹配到的组件将渲染在这里 -->
+  <router-view></router-view>
 </div>
 ```
 
 main.js，路由的重定向，就会在页面一加载的时候，就会将 home 组件显示出来，因为重定向指向了 home 组件，redirect 的指向与 path 的必须一致。children 里面是子路由，当然子路由里面还可以继续嵌套子路由。
 
 ```js
-import Vue from 'vue'
-import VueRouter from 'vue-router'
-Vue.use(VueRouter)
+import Vue from "vue";
+import VueRouter from "vue-router";
+Vue.use(VueRouter);
 
 //引入两个组件
 
-import home from "./home.vue"
-import game from "./game.vue"
+import home from "./home.vue";
+import game from "./game.vue";
 //定义路由
 const routes = [
-    { path: "/", redirect: "/home" },//重定向,指向了home组件
-    {
-        path: "/home", component: home,
-        children: [
-            { path: "/home/game", component: game }
-        ]
-    }
-]
+  { path: "/", redirect: "/home" }, //重定向,指向了home组件
+  {
+    path: "/home",
+    component: home,
+    children: [{ path: "/home/game", component: game }],
+  },
+];
 //创建路由实例
-const router = new VueRouter({routes})
+const router = new VueRouter({ routes });
 
 new Vue({
-    el: '#app',
-    data: {
-    },
-    methods: {
-    },
-    router
-})
+  el: "#app",
+  data: {},
+  methods: {},
+  router,
+});
 ```
 
 home.vue，点击显示就会将子路由显示在出来，子路由的出口必须在父路由里面，否则子路由无法显示。
@@ -171,13 +166,14 @@ webpack 中提供了 require.ensure()来实现按需加载。以前引入路由�
 - 不进行页面按需加载引入方式：
 
 ```js
-import  home   from '../../common/home.vue'
+import home from "../../common/home.vue";
 ```
 
 - 进行页面按需加载的引入方式：
 
 ```js
-const  home = r => require.ensure( [], () => r (require('../../common/home.vue')))
+const home = (r) =>
+  require.ensure([], () => r(require("../../common/home.vue")));
 ```
 
 ### vuex 是什么？怎么使用？哪种功能场景使用它？

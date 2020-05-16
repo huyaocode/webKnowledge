@@ -3,9 +3,8 @@
  */
 
 class Foo extends React.Component {
-
   state = {
-    size: [window.innerWidth, window.innerHeight]
+    size: [window.innerWidth, window.innerHeight],
   };
 
   onResize = () => {
@@ -13,16 +12,16 @@ class Foo extends React.Component {
   };
 
   componentDidMount() {
-    window.addEventListener('resize', onResize);
-    document.title = this.state.size.join('x');
+    window.addEventListener("resize", onResize);
+    document.title = this.state.size.join("x");
   }
 
   componentWillUnmount() {
-    window.removeEventListener('resize', onResize);
+    window.removeEventListener("resize", onResize);
   }
 
   componentDidUpdate() {
-    document.title = this.state.size.join('x');
+    document.title = this.state.size.join("x");
   }
 
   render() {
@@ -31,6 +30,6 @@ class Foo extends React.Component {
       <div>
         {width} x {height}
       </div>
-    )
-  }  
+    );
+  }
 }

@@ -1,53 +1,53 @@
 // 判断变量否为function
-const isFunction = (variable) => typeof variable === 'function';
+const isFunction = (variable) => typeof variable === "function";
 // 定义Promise的三种状态常量
-const PENDING = 'PENDING';
-const FULFILLED = 'FULFILLED';
-const REJECTED = 'REJECTED';
+const PENDING = "PENDING";
+const FULFILLED = "FULFILLED";
+const REJECTED = "REJECTED";
 
 /**
  * 测试函数
  */
 const test = async () => {
   const res = await new MyPromise((resolve, reject) => {
-    console.log('构造函数内执行');
+    console.log("构造函数内执行");
     setTimeout(() => {
-      console.log('构造函数执行完毕， resolve');
+      console.log("构造函数执行完毕， resolve");
       resolve(1);
     }, 1000);
   })
     .then((res) => {
-      console.log('第 1 个then 函数执行');
+      console.log("第 1 个then 函数执行");
       // 返回一个Promise对象
       return new MyPromise((resolve, reject) => {
         setTimeout(() => {
-          console.log('第 1 个then中返回的 Promise 执行完毕，resolve');
+          console.log("第 1 个then中返回的 Promise 执行完毕，resolve");
           resolve(res + 2);
         }, 2000);
       });
     })
     .then((res) => {
-      console.log('第 2 个then 函数执行');
+      console.log("第 2 个then 函数执行");
       // 返回一个Promise对象
       return new MyPromise((resolve, reject) => {
         setTimeout(() => {
-          console.log('第 2 个then中返回的 Promise 执行完毕，resolve');
+          console.log("第 2 个then中返回的 Promise 执行完毕，resolve");
           resolve(res + 3);
         }, 2000);
       });
     })
     .then((res) => {
-      console.log('第 3 个then 函数执行');
-      console.log('打印结果：', res);
+      console.log("第 3 个then 函数执行");
+      console.log("打印结果：", res);
       return res + 3;
     })
     .then((res) => {
-      console.log('第 4 个then 函数执行');
-      console.log('打印结果：', res);
+      console.log("第 4 个then 函数执行");
+      console.log("打印结果：", res);
       return res + 4;
     });
 
-  console.log('res = ', res);
+  console.log("res = ", res);
 };
 
 const test2 = async () => {
@@ -55,11 +55,11 @@ const test2 = async () => {
     resolve(1);
   }).then(
     (res) => {
-      console.log('第 1 个then 函数执行');
+      console.log("第 1 个then 函数执行");
       // 返回一个Promise对象
       return new MyPromise((resolve, reject) => {
         setTimeout(() => {
-          console.log('第 1 个then中返回的 Promise 执行完毕，resolve');
+          console.log("第 1 个then中返回的 Promise 执行完毕，resolve");
           resolve(res + 2);
         }, 2000);
       });
@@ -82,7 +82,7 @@ class MyPromise {
    */
   constructor(handle) {
     if (!isFunction(handle)) {
-      throw new Error('MyPromise must accept a function as a parameter');
+      throw new Error("MyPromise must accept a function as a parameter");
     }
     // 添加状态
     this._status = PENDING;
@@ -104,12 +104,12 @@ class MyPromise {
   // then 函数中 resovle 时调用的函数
   _resolve(val) {
     const run = () => {
-      console.log('\t 执行队列中函数');
+      console.log("\t 执行队列中函数");
       if (this._status !== PENDING) return;
       // 依次执行成功队列中的函数，并清空队列
       const runFulfilled = (value) => {
         let cb;
-        console.log('\tthis._fulfilledQueues', this._fulfilledQueues);
+        console.log("\tthis._fulfilledQueues", this._fulfilledQueues);
         while ((cb = this._fulfilledQueues.shift())) {
           cb(value);
         }
@@ -143,7 +143,7 @@ class MyPromise {
         runFulfilled(val);
       }
     };
-    console.log('\t _reslve 执行');
+    console.log("\t _reslve 执行");
     // 为了支持同步的Promise，这里采用异步调用
     setTimeout(run, 0);
   }
@@ -170,11 +170,11 @@ class MyPromise {
    * @param {*} onRejected then 的第二个参数，失败时调用
    */
   then(onFulfilled, onRejected) {
-    console.log('\t 执行then方法');
+    console.log("\t 执行then方法");
     const { _value, _status } = this;
     // 返回一个新的Promise对象
     return new MyPromise((resolve, reject) => {
-      console.log('\t 新构造 Promise');
+      console.log("\t 新构造 Promise");
       // 封装一个成功时执行的函数
       let fulfilled = (value) => {
         try {
@@ -224,7 +224,7 @@ class MyPromise {
           break;
         // 当状态已经改变时，立即执行对应的回调函数
         case FULFILLED:
-          console.log('\t\t FULFILLED');
+          console.log("\t\t FULFILLED");
           fulfilled(_value);
           break;
         case REJECTED:

@@ -9,7 +9,7 @@ useState()方法可以传递值也可以传递函数，可延迟初始化，此�
 ```jsx
 function App(props) {
   const [count, setCount] = useState(() => {
-    console.log('only run one time');
+    console.log("only run one time");
     return props.defaultCount || 0;
   });
   return <div></div>;
@@ -30,15 +30,15 @@ function App() {
   const [count, setCount] = useState(0);
   const [size, setSize] = useState({
     width: window.innerWidth,
-    height: window.innerHeight
+    height: window.innerHeight,
   });
 
-  console.log('======== render ======== ');
+  console.log("======== render ======== ");
 
   const onResize = () => {
     setSize({
       width: window.innerWidth,
-      height: window.innerHeight
+      height: window.innerHeight,
     });
   };
 
@@ -47,28 +47,28 @@ function App() {
   });
 
   useEffect(() => {
-    window.addEventListener('resize', onResize, false);
+    window.addEventListener("resize", onResize, false);
     return () => {
-      window.removeEventListener('resize', onResize);
+      window.removeEventListener("resize", onResize);
     };
   }, []);
 
   const onClick = () => {
-    console.log('click');
+    console.log("click");
   };
 
   // 需要频繁清理并绑定的副作用
   useEffect(() => {
-    document.getElementById('size').addEventListener('click', onClick);
+    document.getElementById("size").addEventListener("click", onClick);
     return () => {
-      document.getElementById('size').removeEventListener('click', onClick);
+      document.getElementById("size").removeEventListener("click", onClick);
     };
   });
 
   return (
     <div>
       <button onClick={() => setCount(count + 1)}>
-        {' '}
+        {" "}
         Count: {count} 点了之后 id 为 size 的元素就会被替换
       </button>
 
@@ -116,38 +116,42 @@ function App() {
 ```
 
 ### useMemo
-useCallback和useMemo的参数跟useEffect一致，他们之间最大的区别有是useEffect会用于处理副作用，这两个hooks不能。
 
-使用useMemo方法可以避免无用方法的调用,
+useCallback 和 useMemo 的参数跟 useEffect 一致，他们之间最大的区别有是 useEffect 会用于处理副作用，这两个 hooks 不能。
+
+使用 useMemo 方法可以避免无用方法的调用,
+
 ```jsx
 /**
  * 如果不加useMemo, 即时name不变，也会执行changeName函数，是不必要的
  * 如果changeName中使用了setState，那就相当于优化了
  */
 const otherName = useMemo(() => {
-  changeName(name)
+  changeName(name);
 }, [name]);
 ```
 
 ### useCallback
-如果usememo返回的是一个函数，那么可以使用useCallback替代
 
-useCallback解决的是传入子组件参数过度变化导致子组件过度渲染的问题
+如果 usememo 返回的是一个函数，那么可以使用 useCallback 替代
+
+useCallback 解决的是传入子组件参数过度变化导致子组件过度渲染的问题
+
 ```js
 // 这两个是等价的
-useMemo(() => fn, [])
-useCallback(fn, [])
+useMemo(() => fn, []);
+useCallback(fn, []);
 ```
-每一次函数组件重新执行一次，这两个内部函数都会重复创建。然而实际上，他们都是一样的。 所以很多传递给子组件的函数直接使用useCallback包裹起来，会提升性能
 
-
+每一次函数组件重新执行一次，这两个内部函数都会重复创建。然而实际上，他们都是一样的。 所以很多传递给子组件的函数直接使用 useCallback 包裹起来，会提升性能
 
 ### Ref Hooks
 
-1. 使用Eef保存变量：
-因为函数组件每一次都会重新执行，保存一些每一次都需要的使用的变量就需要 Ref Hook
+1. 使用 Eef 保存变量：
+   因为函数组件每一次都会重新执行，保存一些每一次都需要的使用的变量就需要 Ref Hook
 
-定时器，Ref Hooks的最佳实践
+定时器，Ref Hooks 的最佳实践
+
 ```jsx
 function App() {
   const [count, setCount] = useState(1);
@@ -155,25 +159,26 @@ function App() {
 
   useEffect(() => {
     timer.current = setInterval(() => {
-      setCount(count => count+1)
-    }, 1000)
-  }, [])
+      setCount((count) => count + 1);
+    }, 1000);
+  }, []);
 
   useEffect(() => {
-    if(count >= 10) {
-      clearInterval(timer.current)
+    if (count >= 10) {
+      clearInterval(timer.current);
     }
-  })
+  });
 
   return (
     <>
-      <h1>count: {count}</h1> 
+      <h1>count: {count}</h1>
     </>
   );
 }
 ```
 
 2. 使用 Ref 保存上一个状态的值
+
 ```JSX
 function Counter() {
   const [count, setCount] = useState(0);
