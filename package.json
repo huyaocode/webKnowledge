@@ -1,0 +1,25 @@
+{
+  "name": "webKnowledge",
+  "version": "1.0.0",
+  "description": "github 链接：[webKnowledge](https://github.com/huyaocode/webKnowledge)",
+  "main": "index.js",
+  "scripts": {
+    "precommit": "pretty-quick --staged"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/huyaocode/webKnowledge.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/huyaocode/webKnowledge/issues"
+  },
+  "homepage": "https://github.com/huyaocode/webKnowledge#readme",
+  "devDependencies": {
+    "husky": "^4.2.5",
+    "prettier": "2.0.5",
+    "pretty-quick": "^2.0.1"
+  }
+}
