@@ -127,3 +127,16 @@ bezier 曲线在线效果网址 [cubic-bezier.com](http://cubic-bezier.com)
 - 部分情况下优于 JS
 - JS 可以做到更精细
 - 含高危属性，会让性能变差 (如 box-shadow)
+
+### display 属性
+
+当改变元素 display 属性时，过渡属性 transition 失效。
+
+原因：
+display:none 的时候，页面文档流中将不会存在该元素。transition 无法对一个从有到无的元素产生过渡效果。
+
+解决方法：
+
+1. 改变元素的宽/高为 0px,达到隐藏的目的。
+2. 使用 visibility 替代 display。
+3. react 使用 react-transition-group 实现
