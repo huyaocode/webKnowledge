@@ -21,17 +21,6 @@
     "husky": "^4.2.5",
     "prettier": "2.0.5"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
-  "lint-staged": {
-    "*.*": [
-      "prettier --write",
-      "git add"
-    ]
-  },
   "dependencies": {
     "husky": "^4.2.5",
     "lint-staged": "^10.2.2"
