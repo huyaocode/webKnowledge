@@ -10,6 +10,10 @@ github 链接：[webKnowledge](https://github.com/huyaocode/webKnowledge)
 
 有疑问的同学也可以加我**微信**： purple12369
 
+## 前端打卡+学习交流群
+
+![](./img/QRcode.png)
+
 ## 内推
 
 我现在选择字节跳动啦，欢迎大家投递简历。每一份简历我都会认真的跟到底的。而且我在天府成都工作哦，成都的伙伴们找我是最好的啦。北京也有我的好哥们，核心广告部门。 总之，欢迎投递～
@@ -76,6 +80,6 @@ https://job.toutiao.com/s/4ay89f
 
 ![](./img/thank-4.png)
 
-![](./img/thank-5.png)
+![](./img/thank-5.jpg)
 
-![](./img/thank-6.png)
+![](./img/thank-6.jpg)
