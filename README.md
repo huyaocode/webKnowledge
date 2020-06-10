@@ -10,6 +10,8 @@ github 链接：[webKnowledge](https://github.com/huyaocode/webKnowledge)
 
 有疑问的同学也可以加我**微信**： purple12369
 
+备注：文档里含有非常多的图片，但有时 GitHub 在网页上预览不了图片，你可以选择把项目克隆到本地查看。
+
 ## 前端打卡+学习交流群
 
 ![](./img/QRcode.png)
