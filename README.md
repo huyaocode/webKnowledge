@@ -14,7 +14,7 @@ github 链接：[webKnowledge](https://github.com/huyaocode/webKnowledge)
 
 ## 前端打卡+学习交流群
 
-![](./img/QRcode.png)
+![](./img/QRcode.jpg)
 
 ## 内推
 
