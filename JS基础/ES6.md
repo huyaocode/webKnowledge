@@ -69,7 +69,7 @@ arr2; // [ 2, 3, 4 ]
 ```
 
 ```js
-["1", "2", "3"].map(parseInt);
+['1', '2', '3'].map(parseInt);
 // -> [ 1, NaN, NaN ]
 ```
 
@@ -134,10 +134,10 @@ console.log(sum);
 
 ```js
 new Promise((resolve, reject) => {
-  console.log("new Promise");
-  resolve("success");
+  console.log('new Promise');
+  resolve('success');
 });
-console.log("finifsh");
+console.log('finifsh');
 
 // 先打印new Promise， 再打印 finifsh
 ```
@@ -178,7 +178,7 @@ ajax(url)
 
 ```js
 async function test() {
-  return "1";
+  return '1';
 }
 console.log(test());
 // -> Promise {<resolved>: "1"}
@@ -212,11 +212,11 @@ async function test() {
 let a = 0;
 let b = async () => {
   a = a + (await 10);
-  console.log("2", a);
+  console.log('2', a);
 };
 b();
 a++;
-console.log("1", a);
+console.log('1', a);
 
 //先输出  ‘1’, 1
 //在输出  ‘2’, 10
@@ -306,12 +306,17 @@ ES Module 是原生实现的模块化方案，与 CommonJS 有以下几个区别
 
 ```js
 // 引入模块 API
-import XXX from "./a.js";
-import { XXX } from "./a.js";
+import XXX from './a.js';
+import { XXX } from './a.js';
 // 导出模块 API
 export function a() {}
 export default function () {}
 ```
+
+### 为什么 ES 模块比 CommonJS 更好?
+
+ES 模块是官方标准，也是 JavaScript 语言明确的发展方向，而 CommonJS 模块是一种特殊的传统格式，在 ES 模块被提出之前做为暂时的解决方案。
+ES 模块允许进行静态分析，从而实现像 tree-shaking 的优化，并提供诸如循环引用和动态绑定等高级功能。
 
 ### 私有方法和私有属性（阿里一面）
 
@@ -344,8 +349,8 @@ function bar(baz) {
 还有一种方法是利用**Symbol 值的唯一性**，将私有方法的名字命名为一个 Symbol 值。
 
 ```js
-const bar = Symbol("bar");
-const snaf = Symbol("snaf");
+const bar = Symbol('bar');
+const snaf = Symbol('snaf');
 
 export default class myClass {
   // 公有方法
