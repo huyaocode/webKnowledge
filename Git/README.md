@@ -84,7 +84,8 @@ doc/**/*.pdf
 ### 查看修改
 
 - 要查看尚未暂存的文件更新了哪些部分，不加参数直接输入 `git diff`
-- 要查看已暂存的将要添加到下次提交里的内容，可以用 `git diff --cached` 或 `git diff --staged`
+- 要查看已暂存的将要添加到下次提交里的内容，可以用 `git diff --cached` 或 `git diff --staged`，这两个命令结果是一样的。
+- `git diff HEAD`: 对比工作区(未 git add)和版本库(git commit 之后)
 
 ### 提交修改
 
