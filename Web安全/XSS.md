@@ -64,10 +64,14 @@ alert(1);
 
 ## XSS 防御
 
-对于 XSS 攻击来说，通常有两种方式可以用来防御。
-
-- 转义字符
-- CSP 内容安全策略
+1. 设置`HTTPOnly`的`Cookie`标记
+2. 执行浏览器前端 CSP 保护
+3. 选用 `x-xss-protection` 响应头
+4. 选择自动转义的模版框架
+   1. React中避免使用 dangerouslySetInnerHTML
+5. 富文本输出前，先进行净化处理
+   1. HTML Sanitizer from Google Closure Library
+   2. DOM Purify
 
 ### 转义字符
 
