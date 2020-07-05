@@ -18,7 +18,9 @@ github 链接：[webKnowledge](https://github.com/huyaocode/webKnowledge)
 
 ## 内推
 
-我在成都字节跳动工作。想内推建议联系我，我亲自帮你修改简历，然后内推，还可以给你写推荐语。
+我在字节跳动工作。想内推建议联系我，我亲自帮你修改简历，然后内推，还可以给你写推荐语。
+
+[关于内推你需要知道的事](https://github.com/huyaocode/webKnowledge/issues/8)
 
 内推链接： https://job.toutiao.com/s/JLUo51P
 
