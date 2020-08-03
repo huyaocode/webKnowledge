@@ -33,12 +33,12 @@ hybird 存在的核心意义在于快速迭代，无需审核
 - 用于加载 h5 页面，即小型浏览器内核
 - 只是单纯的展示一个网页界面
 
-![webview](../img/webview.png)
+![webview](../../img/webview.png)
 
 ### file 协议
 
 加载本地的资源
-![file](../img/file.png)
+![file](../../img/file.png)
 
 ### app 发布后，静态文件如何实时更新？
 
