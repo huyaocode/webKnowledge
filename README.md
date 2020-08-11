@@ -18,11 +18,14 @@ github 链接：[webKnowledge](https://github.com/huyaocode/webKnowledge)
 
 ## 内推
 
-我在字节跳动工作。想内推建议联系我，我亲自帮你修改简历，然后内推，还可以给你写推荐语。
-
 [关于内推你需要知道的事](https://github.com/huyaocode/webKnowledge/issues/8)
 
-内推链接： https://job.toutiao.com/s/JLUo51P
+### 全部校招职位
+
+字节跳动校招内推码: **MHQXH13**
+投递链接: https://job.toutiao.com/s/J6GcDVY
+
+（所有职位均可内推，我可以帮你修改或检查简历，负责帮你填写推荐语，还可随时找我查询内推进度，如果有希望城市、岗位的变化，也可找我帮联系 HR。）
 
 ### 前端实习生 - 成都 · 实习
 
@@ -47,7 +50,6 @@ https://job.toutiao.com/s/JLUKFJ6
 3. 掌握 WEB 前端开发技术: JavaScript(含 ES6)、HTML、CSS、DOM、协议、安全等；
    有良好的产品意识；
 4. 积极乐观，认真负责，乐于协作。
-
 
 ## 收的到感谢
 
