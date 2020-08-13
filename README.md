@@ -20,7 +20,7 @@ github 链接：[webKnowledge](https://github.com/huyaocode/webKnowledge)
 
 [关于内推你需要知道的事](https://github.com/huyaocode/webKnowledge/issues/8)
 
-### 全部校招职位
+### 校招职位
 
 字节跳动校招内推码: **MHQXH13**
 
@@ -28,29 +28,9 @@ github 链接：[webKnowledge](https://github.com/huyaocode/webKnowledge)
 
 所有职位均可内推，我可以帮你修改或检查简历，负责帮你填写推荐语，还可随时找我查询内推进度，如果有希望城市、岗位的变化，也可找我帮联系 HR。
 
-### 前端实习生 - 成都 · 实习
+### 社招职位
 
-https://job.toutiao.com/s/JLy8jdN
-
-#### 职位要求
-
-1. 统招本科及以上学历，2021 届及以后毕业的学生；
-2. 良好的设计和编码品味，热爱写代码能产出高质量的设计和代码；
-3. 掌握 WEB 前端开发技术: JavaScript(含 ES6)、HTML、CSS、DOM、协议、安全等；
-4. 有良好的产品意识；
-5. 积极乐观，认真负责，乐于协作。
-
-### 前端开发工程师 - 成都 · 社招
-
-https://job.toutiao.com/s/JLUKFJ6
-
-#### 职位要求
-
-1. 3 年及以上 Web 前端开发经验；
-2. 良好的设计和编码品味，热爱写代码能产出高质量的设计和代码；
-3. 掌握 WEB 前端开发技术: JavaScript(含 ES6)、HTML、CSS、DOM、协议、安全等；
-   有良好的产品意识；
-4. 积极乐观，认真负责，乐于协作。
+投递链接： https://job.toutiao.com/s/JMLU4Wn
 
 ## 收的到感谢
 
