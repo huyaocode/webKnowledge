@@ -4,7 +4,7 @@
 
 三个参数分别对应的是 `flex-grow`, `flex-shrink` 和 `flex-basis`，默认值为 `0 1 auto`。
 
-即： 放大元素且默认宽度之和大于容器时也不收缩
+即： `flex: 1 0 auto`指尽可能放大元素且默认宽度之和大于容器时也不收缩
 
 效果参考： https://codepen.io/welovewebdesign/pen/gKnBC
 
