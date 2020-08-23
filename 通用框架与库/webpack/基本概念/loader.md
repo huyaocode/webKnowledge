@@ -2,11 +2,9 @@
 
 当打包到非 JS 文件的时候，webpack 会在`module`中配置里查找，然后根据`rules`中的`test`选择一个 loader 来处理。
 
-## 打包静态资源
+## 打包图片
 
-### 打包图片
-
-#### file-loader
+### file-loader
 
 当发现是图片，使用 file-loader 来打包
 file-loader 做的事：
@@ -47,7 +45,7 @@ rules: [
 ];
 ```
 
-#### url-loader
+### url-loader
 
 将文件打包为 Base64 编码，当图片特别小（1~2k）的时候适用。
 
@@ -68,7 +66,7 @@ rules: [
 ];
 ```
 
-### 打包样式
+## 打包样式
 
 ```js
 {
@@ -83,7 +81,7 @@ rules: [
 - `css-loader` 能帮我们分析出几个 CSS 文件之间的关系
 - `style-loader` 在得到 css-loader 生成的文件后，style-loader 会将这段样式挂在到 header 标签中
 
-#### [使用 sass](https://webpack.js.org/loaders/sass-loader/)
+### [使用 sass](https://webpack.js.org/loaders/sass-loader/)
 
 loader 是**有顺序**的，顺序是：从数组的最后一个依次向前处理。
 
@@ -95,7 +93,7 @@ use: [
 ];
 ```
 
-#### [厂商前缀 postcss-loader](https://webpack.js.org/loaders/postcss-loader/)
+### [厂商前缀 postcss-loader](https://webpack.js.org/loaders/postcss-loader/)
 
 ```js
 use: [
@@ -115,7 +113,7 @@ module.exports = {
 
 `autoprefixer`这个插件可以帮我们添加厂商前缀
 
-#### importLoaders
+### importLoaders
 
 在 sass 文件中又 使用`@import`的方式去引入了其他文件，可能就会导致在打包时直接走 css-loader，而不会去走下面的两个 loader
 
@@ -135,7 +133,7 @@ use: [
 ];
 ```
 
-#### CSS modules
+### CSS modules
 
 css-loader 直接将其打包注入到 header 中，可能造成 CSS 的干扰。即一个文件中引入了一个 CSS，其他地方都会受到影响
 
@@ -163,7 +161,7 @@ img.src = girl;
 img.classList.add(style.girl)
 ```
 
-#### 打包字体
+## 打包字体
 
 打包时如果有字体文件的话打包又会报错，因为不认识字体文件。而对字体文件的打包只需要`file-loader`就可以了
 
