@@ -227,6 +227,17 @@ display: -webkit-box;
 -webkit-box-orient: vertical;
 ```
 
+### div 中直接展示文字
+
+div 中直接展示 textarea 的文字，要让文字不超出 DOM 边界，自动折行，而且保留原本在 textarea 中换行
+
+```css
+div {
+  white-space: pre-line;
+  word-break: break-word;
+}
+```
+
 ### display: none; 与 visibility: hidden; 的区别
 
 结构：

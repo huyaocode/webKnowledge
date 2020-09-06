@@ -12,13 +12,13 @@ github 链接：[webKnowledge](https://github.com/huyaocode/webKnowledge)
 
 [关于内推你需要知道的事](https://github.com/huyaocode/webKnowledge/issues/8)
 
+所有城市、职位均可内推，我**负责帮你填写推荐语，可随时找我查询内推进度**，也可以帮你修改或检查简历，如果临时有变化，也可找我帮联系 HR。
+
 ### 校招职位
 
 字节跳动校招内推码: **MHQXH13**
 
 投递链接: https://job.toutiao.com/s/J6GcDVY
-
-所有职位均可内推，我可以帮你修改或检查简历，负责帮你填写推荐语，还可随时找我查询内推进度，如果有希望城市、岗位的变化，也可找我帮联系 HR。
 
 ### 社招职位
 

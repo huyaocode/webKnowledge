@@ -53,6 +53,36 @@ Cypress 主要用于跑通主流程，测试的是预期内的东西，而对于
 
 ## 技巧
 
+### 在控制台中输出尽可能详细的信息
+
+cypress 主要测试的场景为发起 MR 时，一般是在远程服务器上使用无头模式运行，而 cypress 比单测脆弱，只要有网络不稳定就很容易挂掉。
+一旦 CI 挂掉开发人员就需要去查原因，如果通过下载 cypress 报告看录屏或截图的话效率不够高。可以直接在控制台打印内容，方便看出原因，下面两个插件可以帮助输出网络请求的状况，当后端接口错误时直接把响应头和返回值输出到控制台。
+
+```js
+plugin中：
+require("@cypress/code-coverage/task")(on, config);
+require("cypress-terminal-report/src/installLogsPrinter")(on);
+
+support中：
+import installLogsCollector from "cypress-terminal-report/src/installLogsCollector";
+
+installLogsCollector({
+  printLogs: "always",
+  collectTypes: ["cons:error", "cy:xhr", "cy:request", "cy:route"],
+  xhr: {
+    printHeaderData: true,
+  },
+  filterLog([type, message]) {
+    if (type === "cy:route") {
+      const statusCode = Number(get(/Status\:\s+(\d+)/.exec(message), "1"));
+      return statusCode >= 300;
+    }
+
+    return true;
+  },
+});
+```
+
 ### 写健壮的测试
 
 Cypress 测试存在编写测试用例时通过，但之后测试偶发不通过的情况。为了提升稳定性，可从这几个方面来着手：
@@ -70,6 +100,16 @@ Cypress 测试存在编写测试用例时通过，但之后测试偶发不通过
   - 通过 DOM 结构选择
     - 确认各情况这个 DOM 接口都能取到
     - 有的选择器确实能选中，但点击之后不触发响应，需要传递`{force: true}`
+
+让每个测试用例都可重试一次配置：
+
+```js
+afterEach(() => {
+  if (Cypress.currentTest.state === "failed") {
+    Cypress.runner.stop();
+  }
+});
+```
 
 ### setCookie
 
