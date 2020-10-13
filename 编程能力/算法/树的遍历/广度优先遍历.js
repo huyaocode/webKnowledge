@@ -10,7 +10,7 @@ function widthTravel(tree) {
   while (queue.length) {
     let node = queue.shift();
     for (let i = 0; i < node.children.length; i++) {
-      queue.push(node[i]);
+      nodeList.push(node[i]);
     }
   }
   return nodeList;
