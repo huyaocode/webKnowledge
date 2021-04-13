@@ -26,10 +26,9 @@ github 链接：[webKnowledge](https://github.com/huyaocode/webKnowledge)
 
 ### 校招职位
 
-字节跳动校招内推码: **MHQXH13**
-
-投递链接: https://job.toutiao.com/s/J6GcDVY
+投递链接: 字节跳动校招内推码: **MHQXH13** 
+投递链接: https://jobs.toutiao.com/s/edvfTo9
 
 ### 社招职位
 
-投递链接： https://job.toutiao.com/s/JMLU4Wn
+投递链接： https://job.toutiao.com/s/edvyFaw
