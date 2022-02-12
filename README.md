@@ -32,3 +32,7 @@ github 链接：[webKnowledge](https://github.com/huyaocode/webKnowledge)
 ### 社招职位
 
 投递链接： https://job.toutiao.com/s/edvyFaw
+
+### **2022 实习内推**
+
+投递链接： [2022 闪电内推实习生招募计划](https://jobs.bytedance.com/referral/mobile/lightning-referral?category=&location=&type=3&token=MzsxNjQ0NjUzMjE2MjIwOzY4NDQxODc3ODEzMjYxNjE0MTY7MA)
